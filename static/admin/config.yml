@@ -1,0 +1,55 @@
+backend:
+  name: github
+  repo: bayansads2000-boop/ARTVISIONSTUDIO
+  branch: main
+
+publish_mode: editorial_workflow
+
+media_folder: "static/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "settings"
+    label: "الاعدادات العامة"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "general"
+        label: "الاعدادات"
+        file: "src/lib/data/settings.json"
+        fields:
+          - {label: "عنوان الموقع", name: "title", widget: "string", default: "Art Vision Studio"}
+          - {label: "وصف الموقع", name: "description", widget: "text", default: "وكالة سوشيال ميديا إبداعية"}
+          - {label: "اللوجو", name: "logo", widget: "image"}
+          - {label: "الايميل", name: "email", widget: "string", default: "bayansads2000@gmail.com"}
+          - {label: "رقم الهاتف", name: "phone", widget: "string"}
+          - {label: "فيسبوك", name: "facebook", widget: "string", required: false}
+          - {label: "انستجرام", name: "instagram", widget: "string", required: false}
+          - {label: "واتساب", name: "whatsapp", widget: "string", required: false}
+          - {label: "عنوان الهيرو", name: "hero_title", widget: "string", default: "WE CREATE VISION BEYOND ART"}
+          - {label: "وصف الهيرو", name: "hero_subtitle", widget: "text"}
+          - {label: "نص الزر الأساسي", name: "cta_text", widget: "string", default: "شاهد أعمالنا"}
+
+  - name: "portfolio"
+    label: "الأعمال"
+    folder: "src/lib/data/portfolio"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "العنوان", name: "title", widget: "string"}
+      - {label: "التصنيف", name: "category", widget: "select", options: [{label: "مواقع ويب", value: "websites"}, {label: "تصميمات", value: "designs"}, {label: "فيديوهات", value: "videos"}]}
+      - {label: "الصورة المصغرة", name: "image", widget: "image"}
+      - {label: "رابط العمل", name: "link", widget: "string", required: false}
+      - {label: "الوصف", name: "description", widget: "text"}
+
+  - name: "packages"
+    label: "الباقات"
+    folder: "src/lib/data/packages"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "اسم الباقة", name: "title", widget: "string"}
+      - {label: "السعر", name: "price", widget: "string"}
+      - {label: "المميزات", name: "features", widget: "list"}
+      - {label: "هل هي باقة مميزة؟", name: "popular", widget: "boolean", default: false}
