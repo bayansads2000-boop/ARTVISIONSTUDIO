@@ -48,11 +48,17 @@ collections:
             name: "hero"
             widget: "object"
             fields:
-              - {label: "العنوان الرئيسي", name: "title", widget: "string"}
-              - {label: "العنوان الملون", name: "title_accent", widget: "string"}
-              - {label: "الوصف الفرعي", name: "subtitle", widget: "text"}
-              - {label: "نص الزر (CTA)", name: "cta_text", widget: "string"}
-              - {label: "صورة الخلفية", name: "bg_image", widget: "image"}
+              - {label: "البداية (AR) (مثلاً: نحن نصنع)", name: "subtitle_prefix_ar", widget: "string", default: "نحن نصنع"}
+              - {label: "البداية (EN) (مثلاً: WE CREATE)", name: "subtitle_prefix_en", widget: "string", default: "WE CREATE"}
+              - {label: "العنوان الرئيسي (AR)", name: "title_accent_ar", widget: "string", default: "رؤية فنية"}
+              - {label: "العنوان الرئيسي (EN)", name: "title_accent_en", widget: "string", default: "VISION"}
+              - {label: "الوصف (AR)", name: "subtitle_ar", widget: "text"}
+              - {label: "الوصف (EN)", name: "subtitle_en", widget: "text"}
+              - {label: "نص الزر الأساسي (AR)", name: "cta_text_ar", widget: "string", default: "شاهد أعمالنا"}
+              - {label: "نص الزر الأساسي (EN)", name: "cta_text_en", widget: "string", default: "View Work"}
+              - {label: "نص الزر الفرعي (AR)", name: "cta_outline_text_ar", widget: "string", default: "ابدأ الآن"}
+              - {label: "نص الزر الفرعي (EN)", name: "cta_outline_text_en", widget: "string", default: "Start Now"}
+              - {label: "صورة الخلفية (اختياري)", name: "bg_image", widget: "image"}
 
           - label: "روابط التواصل"
             name: "contact"
@@ -69,6 +75,21 @@ collections:
             fields:
               - {label: "اللون الأساسي", name: "primary_color", widget: "color", default: "#e31e24"}
               - {label: "لون الخلفية", name: "bg_color", widget: "color", default: "#0a0a0a"}
+
+          - label: "نصوص قسم تواصل معنا (CTA)"
+            name: "contact_cta"
+            widget: "object"
+            fields:
+              - {label: "العنوان (AR)", name: "title_ar", widget: "string", default: "جاهز لنبدأ الإبداع؟"}
+              - {label: "العنوان (EN)", name: "title_en", widget: "string", default: "Ready to Start?"}
+              - {label: "الوصف (AR)", name: "desc_ar", widget: "text", default: "نحن هنا لنحول فكرتك إلى واقع مبهر."}
+              - {label: "الوصف (EN)", name: "desc_en", widget: "text", default: "We are here to turn your idea into a stunning reality."}
+              - {label: "عنوان صندوق التواصل (AR)", name: "box_title_ar", widget: "string", default: "هل لديك مشروع في بالك؟"}
+              - {label: "عنوان صندوق التواصل (EN)", name: "box_title_en", widget: "string", default: "Have a project in mind?"}
+              - {label: "وصف صندوق التواصل (AR)", name: "box_desc_ar", widget: "text", default: "تواصل معنا الآن لنبدأ العمل على مشروعك القادم ونحوله إلى واقع."}
+              - {label: "وصف صندوق التواصل (EN)", name: "box_desc_en", widget: "text", default: "Contact us now to start working on your next project and turn it into reality."}
+              - {label: "نص الزر (AR)", name: "btn_text_ar", widget: "string", default: "تواصل معنا الآن"}
+              - {label: "نص الزر (EN)", name: "btn_text_en", widget: "string", default: "Contact Us Now"}
 
   - name: "portfolio"
     label: "🎥 معرض الأعمال"
@@ -95,6 +116,12 @@ collections:
     extension: "json"
     slug: "{{slug}}"
     fields:
+      - {label: "إعدادات القسم", name: "section_info", widget: "object", fields: [
+          {label: "عنوان القسم (AR)", name: "title_ar", widget: "string", default: "خدماتنا"},
+          {label: "عنوان القسم (EN)", name: "title_en", widget: "string", default: "Our Services"},
+          {label: "وصف القسم (AR)", name: "subtitle_ar", widget: "text"},
+          {label: "وصف القسم (EN)", name: "subtitle_en", widget: "text"}
+      ]}
       - {label: "اسم الخدمة (AR)", name: "title_ar", widget: "string"}
       - {label: "اسم الخدمة (EN)", name: "title_en", widget: "string"}
       - {label: "الأيقونة", name: "icon", widget: "string"}

@@ -21,25 +21,41 @@
         <div class="hero-content">
             <h1 class="hero-title">
                 <span class="hero-subtitle"
-                    >{$lang === "ar" ? "نحن نصنع" : "WE CREATE"}</span
+                    >{$lang === "ar"
+                        ? settings?.hero?.subtitle_prefix_ar || "نحن نصنع"
+                        : settings?.hero?.subtitle_prefix_en ||
+                          "WE CREATE"}</span
                 >
                 <span class="hero-accent">
-                    {settings?.hero?.title_accent || "VISION"}
+                    {($lang === "ar"
+                        ? settings?.hero?.title_accent_ar
+                        : settings?.hero?.title_accent_en) ||
+                        settings?.hero?.title_accent ||
+                        "VISION"}
                 </span>
             </h1>
             <p class="hero-description">
-                {settings?.hero?.subtitle ||
+                {($lang === "ar"
+                    ? settings?.hero?.subtitle_ar
+                    : settings?.hero?.subtitle_en) ||
+                    settings?.hero?.subtitle ||
                     ($lang === "ar"
                         ? "وكالة إبداعية تحول الخيال إلى واقع رقمي مبهر."
                         : "A creative agency turning imagination into stunning digital reality.")}
             </p>
             <div class="hero-btns">
                 <a href="/portfolio" class="btn-primary main-btn">
-                    {settings?.hero?.cta_text ||
+                    {($lang === "ar"
+                        ? settings?.hero?.cta_text_ar
+                        : settings?.hero?.cta_text_en) ||
+                        settings?.hero?.cta_text ||
                         ($lang === "ar" ? "شاهد أعمالنا" : "View Work")}
                 </a>
                 <a href="/contact" class="btn-primary outline-btn">
-                    {$lang === "ar" ? "ابدأ الآن" : "Start Now"}
+                    {($lang === "ar"
+                        ? settings?.hero?.cta_outline_text_ar
+                        : settings?.hero?.cta_outline_text_en) ||
+                        ($lang === "ar" ? "ابدأ الآن" : "Start Now")}
                 </a>
             </div>
         </div>
