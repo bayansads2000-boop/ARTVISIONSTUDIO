@@ -8,8 +8,22 @@
         slug: string;
     }
 
-    let { data }: { data: { portfolio: PortfolioItem[]; settings: any } } =
-        $props();
+    interface ServiceItem {
+        title: string;
+        icon: string;
+        description: string;
+        slug: string;
+    }
+
+    let {
+        data,
+    }: {
+        data: {
+            portfolio: PortfolioItem[];
+            services: ServiceItem[];
+            settings: any;
+        };
+    } = $props();
     let filter = $state("all");
     const settings = $derived(data.settings);
 
@@ -68,40 +82,20 @@
         <div
             style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;"
         >
-            <div
-                class="glass animate-on-scroll"
-                style="padding: 40px; transition: var(--transition);"
-            >
-                <div style="font-size: 3rem; margin-bottom: 20px;">🌐</div>
-                <h3 style="margin-bottom: 15px;">تطوير المواقع</h3>
-                <p style="color: var(--text-muted);">
-                    بناء مواقع إلكترونية سريعة، متجاوبة، ومحسنة لمحركات البحث
-                    باستخدام أحدث التقنيات.
-                </p>
-            </div>
-            <div
-                class="glass animate-on-scroll"
-                style="padding: 40px; transition: var(--transition);"
-            >
-                <div style="font-size: 3rem; margin-bottom: 20px;">🎨</div>
-                <h3 style="margin-bottom: 15px;">التصميم الجرافيكي</h3>
-                <h3 style="margin-bottom: 15px;">الهوية البصرية</h3>
-                <p style="color: var(--text-muted);">
-                    تصميم شعارات وهويات بصرية تعبر عن جوهر علامتك التجارية وتترك
-                    انطباعاً لا ينسى.
-                </p>
-            </div>
-            <div
-                class="glass animate-on-scroll"
-                style="padding: 40px; transition: var(--transition);"
-            >
-                <div style="font-size: 3rem; margin-bottom: 20px;">🎬</div>
-                <h3 style="margin-bottom: 15px;">إنتاج الفيديو</h3>
-                <p style="color: var(--text-muted);">
-                    صناعة محتوى مرئي احترافي، موشن جرافيك، وفيديوهات إعلانية
-                    تروي قصتك بإبداع.
-                </p>
-            </div>
+            {#each data.services as service}
+                <div
+                    class="glass animate-on-scroll"
+                    style="padding: 40px; transition: var(--transition);"
+                >
+                    <div style="font-size: 3rem; margin-bottom: 20px;">
+                        {service.icon}
+                    </div>
+                    <h3 style="margin-bottom: 15px;">{service.title}</h3>
+                    <p style="color: var(--text-muted);">
+                        {service.description}
+                    </p>
+                </div>
+            {/each}
         </div>
     </div>
 </section>
@@ -185,6 +179,7 @@
         </div>
     </div>
 </section>
+
 <!-- Contact Section -->
 <section id="contact" style="padding: 100px 0; background: #050505;">
     <div class="container">
@@ -231,7 +226,7 @@
                             >
                                 الايميل
                             </h4>
-                            <p>bayansads2000@gmail.com</p>
+                            <p>{settings.email || "bayansads2000@gmail.com"}</p>
                         </div>
                     </div>
                 </div>
