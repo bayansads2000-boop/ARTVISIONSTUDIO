@@ -1,5 +1,7 @@
 {
-    "title": "إنتاج الفيديو",
+    "title_ar": "إنتاج الفيديو",
+    "title_en": "Video Production",
     "icon": "🎬",
-    "description": "صناعة محتوى مرئي احترافي، موشن جرافيك، وفيديوهات إعلانية تروي قصتك بإبداع."
+    "description_ar": "صناعة محتوى مرئي احترافي، موشن جرافيك، وفيديوهات إعلانية تروي قصتك بإبداع.",
+    "description_en": "Crafting professional visual content, motion graphics, and ad videos that tell your story creatively."
 }
