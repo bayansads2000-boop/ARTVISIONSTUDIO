@@ -4,6 +4,7 @@
         category: string;
         image: string;
         link?: string;
+        video_link?: string;
         description: string;
         slug: string;
     }
@@ -42,7 +43,7 @@
 >
     <!-- Background decoration -->
     <div
-        style="position: absolute; top: -100px; right: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(227,30,36,0.15) 0%, transparent 70%); z-index: -1;"
+        style="position: absolute; top: -100px; right: -100px; width: 500px; height: 500px; background: radial-gradient(circle, var(--primary) 0%, transparent 70%); opacity: 0.15; z-index: -1;"
     ></div>
     <div
         style="position: absolute; bottom: -100px; left: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%); z-index: -1;"
@@ -50,20 +51,22 @@
 
     <div class="container" style="text-align: center;">
         <h1
-            style="font-size: 5rem; line-height: 1; margin-bottom: 20px; font-weight: 900; letter-spacing: -2px;"
+            style="font-size: 5rem; line-height: 1.1; margin-bottom: 20px; font-weight: 900; letter-spacing: -2px;"
         >
-            {@html settings.hero_title ||
-                'WE CREATE <span style="color: var(--primary);">VISION</span><br /> BEYOND <span style="font-style: italic; font-weight: 300;">ART</span>'}
+            {settings?.hero?.title || "WE CREATE"}
+            <span style="color: var(--primary);">
+                {settings?.hero?.title_accent || "VISION"}
+            </span>
         </h1>
         <p
             style="font-size: 1.5rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 40px; font-family: var(--font-ar);"
         >
-            {settings.hero_subtitle ||
+            {settings?.hero?.subtitle ||
                 "وكالة إبداعية متخصصة في صناعة المحتوى، تطوير المواقع، وتصميم الهويات البصرية التي تخطف الأنظار."}
         </p>
         <div style="display: flex; gap: 20px; justify-content: center;">
             <a href="#portfolio" class="btn-primary"
-                >{settings.cta_text || "شاهد أعمالنا"}</a
+                >{settings?.hero?.cta_text || "شاهد أعمالنا"}</a
             >
             <a
                 href="/packages"
@@ -158,13 +161,19 @@
                             class="portfolio-img"
                         />
                         <div
-                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(227,30,36,0.8); opacity: 0; transition: var(--transition); display: flex; align-items: center; justify-content: center;"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); opacity: 0; transition: var(--transition); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;"
                             class="portfolio-overlay"
                         >
                             <span
-                                style="font-weight: 700; color: white; border: 2px solid white; padding: 10px 20px;"
-                                >عرض المزيد</span
+                                style="font-weight: 700; color: white; border: 2px solid var(--primary); padding: 10px 20px;"
+                                >عرض التفاصيل</span
                             >
+                            {#if item.video_link}
+                                <span
+                                    style="font-size: 0.8rem; color: var(--primary);"
+                                    >▶ مشاهدة الفيديو</span
+                                >
+                            {/if}
                         </div>
                     </div>
                     <div style="padding: 25px;">
@@ -211,7 +220,9 @@
                             >
                                 الموقع
                             </h4>
-                            <p>القاهرة، مصر</p>
+                            <p>
+                                {settings?.contact?.address || "القاهرة، مصر"}
+                            </p>
                         </div>
                     </div>
                     <div style="display: flex; align-items: center; gap: 15px;">
@@ -226,7 +237,10 @@
                             >
                                 الايميل
                             </h4>
-                            <p>{settings.email || "bayansads2000@gmail.com"}</p>
+                            <p>
+                                {settings?.contact?.email ||
+                                    "bayansads2000@gmail.com"}
+                            </p>
                         </div>
                     </div>
                 </div>

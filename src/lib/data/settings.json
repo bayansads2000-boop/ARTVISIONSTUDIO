@@ -1,13 +1,25 @@
 {
-  "title": "Art Vision Studio",
-  "description": "Art Vision Studio - Creative Social Media Agency",
-  "logo": "/logo-placeholder.png",
-  "email": "bayansads2000@gmail.com",
-  "phone": "+201156060503",
-  "facebook": "#",
-  "instagram": "#",
-  "whatsapp": "201156060503",
-  "hero_title": "ART VISION STUDIO",
-  "hero_subtitle": "ART VISION STUDIO",
-  "cta_text": "ART VISION STUDIO"
+  "basic_info": {
+    "site_title": "Art Vision Studio",
+    "site_description": "وكالة سوشيال ميديا إبداعية متخصصة في التصميم والبرمجة",
+    "logo": "/favicon.svg"
+  },
+  "hero": {
+    "title": "WE CREATE",
+    "title_accent": "VISION",
+    "subtitle": "وكالة إبداعية متخصصة في صناعة المحتوى، تطوير المواقع، وتصميم الهويات البصرية التي تخطف الأنظار.",
+    "cta_text": "شاهد أعمالنا"
+  },
+  "contact": {
+    "whatsapp": "201156060503",
+    "email": "bayansads2000@gmail.com",
+    "phone": "+201156060503",
+    "address": "القاهرة، مصر",
+    "facebook": "#",
+    "instagram": "#"
+  },
+  "theme": {
+    "primary_color": "#e31e24",
+    "bg_color": "#0a0a0a"
+  }
 }

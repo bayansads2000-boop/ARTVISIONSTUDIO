@@ -5,9 +5,9 @@
 
 	let { children, data }: { children: any; data: { settings: any } } =
 		$props();
+	const settings = $derived(data.settings);
 
 	onMount(() => {
-		// Reveal animations on scroll
 		const observer = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
@@ -26,12 +26,13 @@
 </script>
 
 <svelte:head>
-	<title>Art Vision Studio | وكالة إبداعية</title>
-	<meta
-		name="description"
-		content="Art Vision Studio - وكالة سوشيال ميديا وتصاميم ومواقع ويب"
+	<title>{settings?.basic_info?.site_title || "Art Vision Studio"}</title>
+	<meta name="description" content={settings?.basic_info?.site_description} />
+	<link
+		rel="icon"
+		type="image/svg+xml"
+		href={settings?.basic_info?.logo || "/favicon.svg"}
 	/>
-	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 </svelte:head>
 
 <nav
@@ -52,7 +53,7 @@
 	</ul>
 
 	<a
-		href="https://wa.me/{data.settings.whatsapp}"
+		href="https://wa.me/{settings?.contact?.whatsapp}"
 		class="btn-primary"
 		style="padding: 8px 20px; font-size: 0.9rem;">ابدأ مشروعك</a
 	>
@@ -63,7 +64,7 @@
 </main>
 
 <a
-	href="https://wa.me/{data.settings.whatsapp}"
+	href="https://wa.me/{settings?.contact?.whatsapp}"
 	target="_blank"
 	class="whatsapp-btn"
 	aria-label="Contact us on WhatsApp"
@@ -85,11 +86,11 @@
 	>
 		<div>
 			<h3 style="color: var(--primary); margin-bottom: 20px;">
-				Art Vision Studio
+				{settings?.basic_info?.site_title || "Art Vision Studio"}
 			</h3>
 			<p style="color: var(--text-muted);">
-				نحول الرؤى الفنية إلى واقع رقمي ملموس. نحن شركاؤك في النجاح
-				والنمو.
+				{settings?.basic_info?.site_description ||
+					"نحول الرؤى الفنية إلى واقع رقمي ملموس. نحن شركاؤك في النجاح والنمو."}
 			</p>
 		</div>
 		<div>
@@ -104,9 +105,9 @@
 		<div>
 			<h4 style="margin-bottom: 20px;">تواصل معنا</h4>
 			<ul style="color: var(--text-muted); display: grid; gap: 10px;">
-				<li>Email: bayansads2000@gmail.com</li>
-				<li>Phone: +123456789</li>
-				<li>Location: Cairo, Egypt</li>
+				<li>Email: {settings?.contact?.email}</li>
+				<li>Phone: {settings?.contact?.phone}</li>
+				<li>Location: {settings?.contact?.address}</li>
 			</ul>
 		</div>
 	</div>
@@ -116,7 +117,15 @@
 		style="margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; color: var(--text-muted); font-size: 0.9rem;"
 	>
 		<p>
-			© {new Date().getFullYear()} Art Vision Studio. All rights reserved.
+			© {new Date().getFullYear()}
+			{settings?.basic_info?.site_title}. All rights reserved.
 		</p>
 	</div>
 </footer>
+
+<style>
+    :root {
+        --primary: {settings?.theme?.primary_color || '#e31e24'};
+        --bg-dark: {settings?.theme?.bg_color || '#0a0a0a'};
+    }
+</style>
