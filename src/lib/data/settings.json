@@ -1,10 +1,13 @@
 {
-    "title": "Art Vision Studio",
-    "description": "Art Vision Studio - Creative Social Media Agency",
-    "logo": "/logo-placeholder.png",
-    "email": "bayansads2000@gmail.com",
-    "phone": "+123456789",
-    "facebook": "#",
-    "instagram": "#",
-    "whatsapp": "#"
+  "title": "Art Vision Studio",
+  "description": "Art Vision Studio - Creative Social Media Agency",
+  "logo": "/logo-placeholder.png",
+  "email": "bayansads2000@gmail.com",
+  "phone": "+201156060503",
+  "facebook": "#",
+  "instagram": "#",
+  "whatsapp": "201156060503",
+  "hero_title": "ART VISION STUDIO",
+  "hero_subtitle": "ART VISION STUDIO",
+  "cta_text": "ART VISION STUDIO"
 }
