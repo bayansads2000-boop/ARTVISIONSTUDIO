@@ -1,5 +1,6 @@
 <script lang="ts">
     import { lang } from "$lib/stores/lang";
+    import WaterEffect from "$lib/components/WaterEffect.svelte";
 
     interface PortfolioItem {
         title_ar: string;
@@ -51,11 +52,13 @@
 
 <!-- Hero Section -->
 <section
-    style="min-height: 90vh; display: flex; align-items: center; position: relative; overflow: hidden; padding: 100px 0; background: url({settings
-        ?.hero?.bg_image}) center/cover no-repeat;"
+    style="min-height: 90vh; display: flex; align-items: center; position: relative; overflow: hidden; padding: 100px 0; background: #050505;"
 >
+    <!-- Liquid Water Effect -->
+    <WaterEffect />
+
     <div
-        style="position: absolute; inset: 0; background: rgba(0,0,0,0.7); z-index: 0;"
+        style="position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.4) 100%); z-index: 1;"
     ></div>
 
     <div
@@ -67,20 +70,24 @@
         style="text-align: center; position: relative; z-index: 2;"
     >
         <h1
-            style="font-size: 5rem; line-height: 1.1; margin-bottom: 20px; font-weight: 900; letter-spacing: -2px;"
+            style="font-size: clamp(3rem, 10vw, 6rem); line-height: 1; margin-bottom: 25px; font-weight: 950; letter-spacing: -4px; text-transform: uppercase;"
         >
-            {settings?.hero?.title || "WE CREATE"}
-            <span style="color: var(--primary);">
+            <span style="display: block; opacity: 0.9;"
+                >{settings?.hero?.title || "WE CREATE"}</span
+            >
+            <span
+                style="color: var(--primary); text-shadow: 0 0 30px rgba(227,30,36,0.5);"
+            >
                 {settings?.hero?.title_accent || "VISION"}
             </span>
         </h1>
         <p
-            style="font-size: 1.5rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 40px;"
+            style="font-size: clamp(1.1rem, 2vw, 1.4rem); color: rgba(255,255,255,0.7); max-width: 800px; margin: 0 auto 50px; line-height: 1.6; font-weight: 500;"
         >
             {settings?.hero?.subtitle ||
                 ($lang === "ar"
-                    ? "وكالة إبداعية متخصصة في صناعة المحتوى"
-                    : "Specialized creative agency in content creation")}
+                    ? "وكالة إبداعية متخصصة في صناعة المحتوى، تطوير المواقع، وتصميم الهويات البصرية التي تخطف الأنظار."
+                    : "A creative agency specialized in content creation, web development, and visual identities that capture attention.")}
         </p>
         <div style="display: flex; gap: 20px; justify-content: center;">
             <a
@@ -215,7 +222,7 @@
                     <div
                         style="padding: 25px; text-align: {$lang === 'ar'
                             ? 'right'
-                            : 'left' || 'center'};"
+                            : 'left'};"
                     >
                         <span
                             style="color: var(--primary); font-size: 0.8rem; text-transform: uppercase; font-weight: 700;"
