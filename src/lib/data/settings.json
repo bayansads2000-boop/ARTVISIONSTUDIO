@@ -1,0 +1,75 @@
+{
+  "basic_info": {
+    "site_title": "Art Vision Studio",
+    "site_description": "وكالة سوشيال ميديا إبداعية متخصصة في التصميم والبرمجة",
+    "logo": "/favicon.svg",
+    "site_url": "https://artvisionstudio.pages.dev"
+  },
+  "meta": {
+    "og_image": "/favicon.svg",
+    "org_name": "Art Vision Studio"
+  },
+  "whatsapp_messages": {
+    "hero_msg": "مرحباً ART VISION، أريد الاستفسار عن خدماتكم.",
+    "package_msg": "مرحباً، أريد الاشتراك في باقة: ",
+    "portfolio_msg": "مرحباً، أعجبني هذا العمل وأريد تنفيذ شيء مشابه: "
+  },
+  "hero": {
+    "subtitle_prefix_ar": "نحن نرتقي بـ",
+    "subtitle_prefix_en": "WE ELEVATE",
+    "title_accent_ar": "رؤيتك الإبداعية",
+    "title_accent_en": "YOUR VISION",
+    "subtitle_ar": "وكالة إبداعية متخصصة في صناعة المحتوى، تطوير المواقع، وتصميم الهويات البصرية التي تخطف الأنظار.",
+    "subtitle_en": "A creative agency specialized in content creation, web development, and eye-catching visual identities.",
+    "cta_text_ar": "شاهد أعمالنا",
+    "cta_text_en": "View Work",
+    "cta_outline_text_ar": "ابدأ الآن",
+    "cta_outline_text_en": "Start Now",
+    "bg_image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=2000"
+  },
+  "pages": {
+    "services": {
+      "title_ar": "خدماتنا الإبداعية",
+      "title_en": "Our Creative Services",
+      "desc_ar": "نقدم حلولاً متكاملة تجمع بين الفن والتقنية لنساعد علامتك التجارية على النمو والتميز في الفضاء الرقمي.",
+      "desc_en": "We provide integrated solutions that combine art and technology to help your brand grow and excel in the digital space."
+    },
+    "portfolio": {
+      "title_ar": "معرض أعمالنا",
+      "title_en": "Our Portfolio",
+      "desc_ar": "استعرض مسيرتنا الإبداعية ومجموعة من أفضل المشاريع التي قمنا بتنفيذها.",
+      "desc_en": "Explore our creative journey and a collection of the best projects we have executed."
+    },
+    "packages": {
+      "title_ar": "باقاتنا الإبداعية",
+      "title_en": "Our Creative Packages",
+      "desc_ar": "اختر الباقة المناسبة لاحتياجات عملك وانطلق معنا اليوم.",
+      "desc_en": "Choose the right package for your business needs and start with us today."
+    }
+  },
+  "contact_cta": {
+    "title_ar": "جاهز لنبدأ الإبداع؟",
+    "title_en": "Ready to Start?",
+    "desc_ar": "نحن هنا لنحول فكرتك إلى واقع مبهر.",
+    "desc_en": "We are here to turn your idea into a stunning reality.",
+    "box_title_ar": "هل لديك مشروع في بالك؟",
+    "box_title_en": "Have a project in mind?",
+    "box_desc_ar": "تواصل معنا الآن لنبدأ العمل على مشروعك القادم ونحوله إلى واقع.",
+    "box_desc_en": "Contact us now to start working on your next project and turn it into reality.",
+    "btn_text_ar": "تواصل معنا الآن",
+    "btn_text_en": "Contact Us Now"
+  },
+  "contact": {
+    "whatsapp": "201156060503",
+    "email": "bayansads2000@gmail.com",
+    "phone": "+201156060503",
+    "address": "القاهرة، مصر"
+  },
+  "theme": {
+    "primary_color": "#e31e24",
+    "hero_glow_color": "#e31e24",
+    "particle_color": "#ffffff",
+    "liquid_accent_color": "#18191D",
+    "bg_color": "#0a0a0a"
+  }
+}
