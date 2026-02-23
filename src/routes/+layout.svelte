@@ -126,7 +126,7 @@
 >
 	<nav
 		class="glass"
-		style="position: sticky; top: 0; z-index: 1000; margin: 10px 20px; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center;"
+		style="position: sticky; top: 0; z-index: 1000; margin: 20px auto; max-width: 1800px; width: calc(100% - 40px); padding: 12px 40px; display: flex; justify-content: space-between; align-items: center;"
 	>
 		<div class="logo">
 			<a
