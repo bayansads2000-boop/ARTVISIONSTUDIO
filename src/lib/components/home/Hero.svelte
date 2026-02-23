@@ -95,22 +95,35 @@
     }
 
     .hero-title {
-        font-size: clamp(3.5rem, 12vw, 7.5rem);
-        line-height: 0.85;
-        margin-bottom: 35px;
+        font-size: clamp(2.5rem, 10vw, 7.5rem);
+        line-height: 0.9;
+        margin-bottom: 25px;
         font-weight: 950;
-        letter-spacing: -6px;
+        letter-spacing: -3px;
         text-transform: uppercase;
     }
 
     :global(.hero-subtitle) {
         display: block;
         opacity: 0.9;
-        font-size: 0.35em;
-        letter-spacing: 18px;
-        margin-bottom: 25px;
+        font-size: 0.3em;
+        letter-spacing: 8px;
+        margin-bottom: 15px;
         font-weight: 700;
         color: var(--text-muted);
+    }
+
+    @media (min-width: 769px) {
+        .hero-title {
+            letter-spacing: -6px;
+            line-height: 0.85;
+            margin-bottom: 35px;
+        }
+        :global(.hero-subtitle) {
+            font-size: 0.35em;
+            letter-spacing: 18px;
+            margin-bottom: 25px;
+        }
     }
 
     :global(.hero-accent) {
@@ -121,24 +134,43 @@
     }
 
     :global(.hero-description) {
-        font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+        font-size: clamp(1rem, 2.5vw, 1.7rem);
         color: rgba(255, 255, 255, 0.9);
+        padding: 0 10px;
         max-width: 900px;
-        margin: 0 auto 60px;
-        line-height: 1.4;
+        margin: 0 auto 40px;
+        line-height: 1.5;
         font-weight: 500;
     }
 
     .hero-btns {
         display: flex;
-        gap: 30px;
+        flex-wrap: wrap;
+        gap: 15px;
         justify-content: center;
         align-items: center;
     }
 
+    .main-btn,
+    .outline-btn {
+        padding: 16px 40px;
+        font-size: 1rem;
+        width: auto;
+    }
+
+    @media (max-width: 480px) {
+        .hero-btns {
+            flex-direction: column;
+            width: 100%;
+            padding: 0 20px;
+        }
+        .main-btn,
+        .outline-btn {
+            width: 100%;
+        }
+    }
+
     .main-btn {
-        padding: 22px 55px;
-        font-size: 1.15rem;
         box-shadow: 0 15px 40px rgba(var(--primary-rgb, 227, 30, 36), 0.3);
     }
 
@@ -150,8 +182,6 @@
     .outline-btn {
         background: transparent;
         border: 2px solid rgba(255, 255, 255, 0.3);
-        padding: 22px 55px;
-        font-size: 1.15rem;
         transition: all 0.3s ease;
     }
 

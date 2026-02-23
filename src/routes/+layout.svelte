@@ -8,6 +8,7 @@
 
 	let { children, data }: { children: any; data: { settings: any } } =
 		$props();
+	let mobileMenuOpen = $state(false);
 	const settings = $derived(data.settings);
 	const siteUrl = $derived(
 		(settings?.basic_info?.site_url || "").replace(/\/$/, ""),
@@ -125,12 +126,12 @@
 >
 	<nav
 		class="glass"
-		style="position: sticky; top: 0; z-index: 1000; margin: 20px; padding: 10px 40px; display: flex; justify-content: space-between; align-items: center;"
+		style="position: sticky; top: 0; z-index: 1000; margin: 10px 20px; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center;"
 	>
 		<div class="logo">
 			<a
 				href="/"
-				style="display: flex; align-items: center; height: 50px; width: 150px; overflow: hidden;"
+				style="display: flex; align-items: center; height: 40px; width: 120px; overflow: hidden;"
 			>
 				{#if settings?.basic_info?.logo}
 					<img
@@ -144,7 +145,10 @@
 			</a>
 		</div>
 
-		<ul style="display: flex; gap: 30px; font-weight: 600;">
+		<ul
+			class="hide-mobile"
+			style="display: flex; gap: 20px; font-weight: 600; font-size: 0.9rem;"
+		>
 			<li><a href="/">{t(settings, "nav.home")}</a></li>
 			<li>
 				<a href="/services">{t(settings, "nav.services")}</a>
@@ -160,21 +164,62 @@
 			</li>
 		</ul>
 
-		<div style="display: flex; gap: 15px; align-items: center;">
+		<div style="display: flex; gap: 10px; align-items: center;">
 			<button
 				onclick={toggleLang}
+				class="hide-mobile"
 				style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 5px 12px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 0.8rem;"
 			>
 				{$lang === "ar" ? "EN" : "عربي"}
 			</button>
 			<a
 				href="/contact"
-				class="btn-primary"
-				style="padding: 8px 20px; font-size: 0.9rem;"
+				class="btn-primary hide-mobile"
+				style="padding: 8px 15px; font-size: 0.8rem;"
 				>{t(settings, "nav.cta")}</a
 			>
+
+			<button
+				class="mobile-only"
+				onclick={() => (mobileMenuOpen = !mobileMenuOpen)}
+				style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;"
+			>
+				{mobileMenuOpen ? "✕" : "☰"}
+			</button>
 		</div>
 	</nav>
+
+	{#if mobileMenuOpen}
+		<div
+			class="mobile-menu glass fade-in"
+			style="position: fixed; inset: 0; z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; font-size: 1.5rem; font-weight: bold;"
+		>
+			<a href="/" onclick={() => (mobileMenuOpen = false)}
+				>{t(settings, "nav.home")}</a
+			>
+			<a href="/services" onclick={() => (mobileMenuOpen = false)}
+				>{t(settings, "nav.services")}</a
+			>
+			<a href="/portfolio" onclick={() => (mobileMenuOpen = false)}
+				>{t(settings, "nav.portfolio")}</a
+			>
+			<a href="/packages" onclick={() => (mobileMenuOpen = false)}
+				>{t(settings, "nav.packages")}</a
+			>
+			<a href="/contact" onclick={() => (mobileMenuOpen = false)}
+				>{t(settings, "nav.contact")}</a
+			>
+			<button
+				onclick={() => {
+					toggleLang();
+					mobileMenuOpen = false;
+				}}
+				style="background: var(--primary); color: white; border: none; padding: 10px 30px; border-radius: 50px; font-weight: bold;"
+			>
+				{$lang === "ar" ? "English" : "عربي"}
+			</button>
+		</div>
+	{/if}
 
 	<main>
 		{@render children()}
@@ -201,11 +246,11 @@
 	<footer
 		style="background: #050505; border-top: 1px solid rgba(255,255,255,0.1); padding: 80px 0 40px;"
 	>
-		<div
-			class="container"
-			style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;"
-		>
-			<div style="text-align: {$lang === 'ar' ? 'right' : 'left'};">
+		<div class="container footer-grid">
+			<div
+				class="footer-col"
+				style="text-align: {$lang === 'ar' ? 'right' : 'left'};"
+			>
 				<h3 style="color: var(--primary); margin-bottom: 20px;">
 					{settings?.basic_info?.site_title || "Art Vision Studio"}
 				</h3>
@@ -213,7 +258,10 @@
 					{settings?.basic_info?.site_description ?? ""}
 				</p>
 			</div>
-			<div style="text-align: {$lang === 'ar' ? 'right' : 'left'};">
+			<div
+				class="footer-col"
+				style="text-align: {$lang === 'ar' ? 'right' : 'left'};"
+			>
 				<h4 style="margin-bottom: 20px;">
 					{t(settings, "footer.quick_links")}
 				</h4>
@@ -238,7 +286,10 @@
 					</li>
 				</ul>
 			</div>
-			<div style="text-align: {$lang === 'ar' ? 'right' : 'left'};">
+			<div
+				class="footer-col"
+				style="text-align: {$lang === 'ar' ? 'right' : 'left'};"
+			>
 				<h4 style="margin-bottom: 20px;">
 					{t(settings, "footer.contact_us")}
 				</h4>
@@ -263,4 +314,23 @@
 			</p>
 		</div>
 	</footer>
+
+	<style>
+		.footer-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+			gap: 40px;
+		}
+
+		@media (max-width: 768px) {
+			.footer-grid {
+				grid-template-columns: 1fr;
+				text-align: center !important;
+			}
+
+			.footer-col {
+				text-align: center !important;
+			}
+		}
+	</style>
 </div>

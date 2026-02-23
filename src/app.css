@@ -157,3 +157,47 @@ img {
   background: var(--primary);
   border-radius: 2px;
 }
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2.2rem !important;
+    margin-bottom: 30px;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.8rem !important;
+  }
+
+  .btn-primary {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile Utilities */
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .hide-tablet {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+}

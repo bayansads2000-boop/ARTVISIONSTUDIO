@@ -15,29 +15,24 @@
         $props();
 </script>
 
-<section id="services" style="padding: 100px 0; background: #080808;">
+<section id="services" class="services-section">
     <div class="container">
         <h2 class="section-title">
             {t(settings, "pages.services.title")}
         </h2>
-        <div
-            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;"
-        >
+        <div class="services-grid">
             {#each services as service}
                 <div
-                    class="glass animate-on-scroll"
-                    style="padding: 40px; transition: var(--transition); text-align: {$lang ===
-                    'ar'
-                        ? 'right'
-                        : 'left'};"
+                    class="glass service-card animate-on-scroll"
+                    style="text-align: {$lang === 'ar' ? 'right' : 'left'};"
                 >
-                    <div style="font-size: 3rem; margin-bottom: 20px;">
+                    <div class="service-icon">
                         {service.icon}
                     </div>
-                    <h3 style="margin-bottom: 15px;">
+                    <h3 class="service-title">
                         {$lang === "ar" ? service.title_ar : service.title_en}
                     </h3>
-                    <p style="color: var(--text-muted);">
+                    <p class="service-desc">
                         {$lang === "ar"
                             ? service.description_ar
                             : service.description_en}
@@ -49,14 +44,57 @@
 </section>
 
 <style>
-    .section-title {
-        font-size: 3.5rem;
-        font-weight: 900;
-        margin-bottom: 60px;
-        text-align: center;
-        letter-spacing: -2px;
+    .services-section {
+        padding: 100px 0;
+        background: #080808;
     }
-    .glass:hover {
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .service-card {
+        padding: 40px;
+        transition: var(--transition);
+    }
+
+    .service-icon {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+
+    .service-title {
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+    }
+
+    .service-desc {
+        color: var(--text-muted);
+        line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+        .services-section {
+            padding: 60px 0;
+        }
+
+        .services-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            padding: 25px;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+        }
+    }
+
+    .service-card:hover {
         transform: translateY(-10px);
         border-color: var(--primary);
     }
