@@ -2,7 +2,17 @@
   "basic_info": {
     "site_title": "Art Vision Studio",
     "site_description": "وكالة سوشيال ميديا إبداعية متخصصة في التصميم والبرمجة",
-    "logo": "/favicon.svg"
+    "logo": "/favicon.svg",
+    "site_url": "https://artvisionstudio.pages.dev"
+  },
+  "meta": {
+    "og_image": "/favicon.svg",
+    "org_name": "Art Vision Studio"
+  },
+  "whatsapp_messages": {
+    "hero_msg": "مرحباً ART VISION، أريد الاستفسار عن خدماتكم.",
+    "package_msg": "مرحباً، أريد الاشتراك في باقة: ",
+    "portfolio_msg": "مرحباً، أعجبني هذا العمل وأريد تنفيذ شيء مشابه: "
   },
   "hero": {
     "title": "WE CREATE",
@@ -15,9 +25,7 @@
     "whatsapp": "201156060503",
     "email": "bayansads2000@gmail.com",
     "phone": "+201156060503",
-    "address": "القاهرة، مصر",
-    "facebook": "#",
-    "instagram": "#"
+    "address": "القاهرة، مصر"
   },
   "theme": {
     "primary_color": "#e31e24",

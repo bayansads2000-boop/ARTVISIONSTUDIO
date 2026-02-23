@@ -35,7 +35,14 @@ collections:
             fields:
               - {label: "صورة المشاركة (OG Image)", name: "og_image", widget: "image"}
               - {label: "اسم المنظمة (Organization Name)", name: "org_name", widget: "string", default: "Art Vision Studio"}
-              - {label: "تويتر يوزرناه", name: "twitter_handle", widget: "string", required: false}
+
+          - label: "الرسائل التلقائية (WhatsApp)"
+            name: "whatsapp_messages"
+            widget: "object"
+            fields:
+              - {label: "رسالة الهيرو", name: "hero_msg", widget: "string", default: "مرحباً ART VISION، أريد الاستفسار عن خدماتكم."}
+              - {label: "رسالة الباقات", name: "package_msg", widget: "string", default: "مرحباً، أريد الاشتراك في باقة: "}
+              - {label: "رسالة معرض الأعمال", name: "portfolio_msg", widget: "string", default: "مرحباً، أعجبني هذا العمل وأريد تنفيذ شيء مشابه: "}
 
           - label: "قسم الهيرو (الواجهة الرئيسية)"
             name: "hero"
@@ -45,6 +52,7 @@ collections:
               - {label: "العنوان الملون", name: "title_accent", widget: "string"}
               - {label: "الوصف الفرعي", name: "subtitle", widget: "text"}
               - {label: "نص الزر (CTA)", name: "cta_text", widget: "string"}
+              - {label: "صورة الخلفية", name: "bg_image", widget: "image"}
 
           - label: "روابط التواصل"
             name: "contact"
@@ -54,8 +62,6 @@ collections:
               - {label: "الايميل", name: "email", widget: "string"}
               - {label: "الهاتف", name: "phone", widget: "string"}
               - {label: "العنوان", name: "address", widget: "string"}
-              - {label: "فيسبوك", name: "facebook", widget: "string", required: false}
-              - {label: "انستجرام", name: "instagram", widget: "string", required: false}
             
           - label: "تصميم الموقع (Colors)"
             name: "theme"
@@ -72,15 +78,14 @@ collections:
     extension: "json"
     slug: "{{slug}}"
     fields:
-      - {label: "اسم العمل", name: "title", widget: "string"}
+      - {label: "اسم العمل", name: "title_ar", widget: "string"}
+      - {label: "اسم العمل (EN)", name: "title_en", widget: "string"}
       - {label: "التصنيف", name: "category", widget: "select", options: [{label: "مواقع ويب", value: "websites"}, {label: "تصميمات", value: "designs"}, {label: "فيديوهات", value: "videos"}]}
       - {label: "الصورة الرئيسية", name: "image", widget: "image"}
-      - {label: "معرض الصور (اختياري)", name: "gallery", widget: "list", field: {label: "صورة", widget: "image"}, required: false}
-      - {label: "فيديو (YouTube/Vimeo Link)", name: "video_link", widget: "string", required: false}
-      - {label: "الوصف القصير", name: "description", widget: "string"}
-      - {label: "محتوى العمل بالتفصيل", name: "body", widget: "markdown"}
-      - {label: "رابط مباشر للعمل", name: "link", widget: "string", required: false}
-      - {label: "تاريخ العمل", name: "date", widget: "datetime", format: "YYYY-MM-DD"}
+      - {label: "الوصف (AR)", name: "description_ar", widget: "string"}
+      - {label: "الوصف (EN)", name: "description_en", widget: "string"}
+      - {label: "محتوى العمل (AR)", name: "body_ar", widget: "markdown"}
+      - {label: "محتوى العمل (EN)", name: "body_en", widget: "markdown"}
 
   - name: "services"
     label: "✨ الخدمات"
@@ -90,9 +95,11 @@ collections:
     extension: "json"
     slug: "{{slug}}"
     fields:
-      - {label: "اسم الخدمة", name: "title", widget: "string"}
-      - {label: "الأيقونة (Emoji or SVG)", name: "icon", widget: "string"}
-      - {label: "شرح الخدمة", name: "description", widget: "text"}
+      - {label: "اسم الخدمة (AR)", name: "title_ar", widget: "string"}
+      - {label: "اسم الخدمة (EN)", name: "title_en", widget: "string"}
+      - {label: "الأيقونة", name: "icon", widget: "string"}
+      - {label: "شرح الخدمة (AR)", name: "description_ar", widget: "text"}
+      - {label: "شرح الخدمة (EN)", name: "description_en", widget: "text"}
 
   - name: "packages"
     label: "💎 الباقات والأسعار"
@@ -102,6 +109,8 @@ collections:
     extension: "json"
     slug: "{{slug}}"
     fields:
-      - {label: "اسم الباقة", name: "title", widget: "string"}
+      - {label: "اسم الباقة (AR)", name: "title_ar", widget: "string"}
+      - {label: "اسم الباقة (EN)", name: "title_en", widget: "string"}
       - {label: "السعر", name: "price", widget: "string"}
-      - {label: "المميزات", name: "features", widget: "list"}
+      - {label: "المميزات (AR)", name: "features_ar", widget: "list"}
+      - {label: "المميزات (EN)", name: "features_en", widget: "list"}

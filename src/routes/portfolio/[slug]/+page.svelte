@@ -1,19 +1,28 @@
 <script lang="ts">
-    import { onMount } from "svelte";
     import { marked } from "marked";
+    import { lang } from "$lib/stores/lang";
 
     let { data } = $props();
     const project = $derived(data.project);
+    const settings = $derived(data.settings);
 
-    let htmlBody = $derived(project.body ? marked.parse(project.body) : "");
+    let htmlBody = $derived(
+        project
+            ? marked.parse($lang === "ar" ? project.body_ar : project.body_en)
+            : "",
+    );
 </script>
 
 <svelte:head>
-    <title>{project.title} | Art Vision Studio</title>
-    <meta name="description" content={project.description} />
-    <meta property="og:title" content={project.title} />
-    <meta property="og:description" content={project.description} />
-    <meta property="og:image" content={project.image} />
+    <title
+        >{$lang === "ar" ? project.title_ar : project.title_en} | Art Vision Studio</title
+    >
+    <meta
+        name="description"
+        content={$lang === "ar"
+            ? project.description_ar
+            : project.description_en}
+    />
 </svelte:head>
 
 <section style="padding: 150px 0 100px;">
@@ -25,12 +34,14 @@
                 >{project.category}</span
             >
             <h1 style="font-size: 4rem; margin: 10px 0 20px; font-weight: 900;">
-                {project.title}
+                {$lang === "ar" ? project.title_ar : project.title_en}
             </h1>
             <p
                 style="font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin: 0 auto;"
             >
-                {project.description}
+                {$lang === "ar"
+                    ? project.description_ar
+                    : project.description_en}
             </p>
         </div>
 
@@ -50,13 +61,15 @@
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen
-                        title={project.title}
+                        title={$lang === "ar"
+                            ? project.title_ar
+                            : project.title_en}
                     ></iframe>
                 </div>
             {:else}
                 <img
                     src={project.image}
-                    alt={project.title}
+                    alt={$lang === "ar" ? project.title_ar : project.title_en}
                     style="width: 100%; display: block;"
                 />
             {/if}
@@ -68,10 +81,13 @@
         >
             <div
                 class="glass"
-                style="padding: 40px; line-height: 1.8; font-size: 1.1rem;"
+                style="padding: 40px; line-height: 1.8; font-size: 1.1rem; text-align: {$lang ===
+                'ar'
+                    ? 'right'
+                    : 'left'};"
             >
                 <h3 style="margin-bottom: 20px; color: var(--primary);">
-                    تفاصل المشروع
+                    {$lang === "ar" ? "تفاصيل المشروع" : "Project Details"}
                 </h3>
                 <div class="prose">
                     {@html htmlBody}
@@ -79,44 +95,39 @@
             </div>
 
             <div style="display: grid; gap: 30px;">
-                <div class="glass" style="padding: 30px;">
-                    <h4 style="margin-bottom: 15px;">معلومات</h4>
-                    <div
-                        style="display: grid; gap: 10px; color: var(--text-muted);"
+                <div
+                    class="glass"
+                    style="padding: 30px; text-align: {$lang === 'ar'
+                        ? 'right'
+                        : 'left'};"
+                >
+                    <h4 style="margin-bottom: 15px;">
+                        {$lang === "ar"
+                            ? "طلب عمل مشابه"
+                            : "Order Similar Work"}
+                    </h4>
+                    <p
+                        style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;"
                     >
-                        <div>
-                            <strong>التاريخ:</strong>
-                            {project.date || "---"}
-                        </div>
-                        <div><strong>التصنيف:</strong> {project.category}</div>
-                    </div>
-                    {#if project.link}
-                        <a
-                            href={project.link}
-                            target="_blank"
-                            class="btn-primary"
-                            style="margin-top: 25px; width: 100%; text-align: center;"
-                            >زيارة المشروع</a
-                        >
-                    {/if}
+                        {$lang === "ar"
+                            ? "هل أعجبك هذا العمل؟ تواصل معنا لننفذ لك مشروعاً بمستوى احترافي مشابه."
+                            : "Did you like this work? Contact us to execute a professional project for you."}
+                    </p>
+                    <a
+                        href="https://wa.me/{settings?.contact
+                            ?.whatsapp}?text={encodeURIComponent(
+                            settings?.whatsapp_messages?.portfolio_msg +
+                                ($lang === 'ar'
+                                    ? project.title_ar
+                                    : project.title_en),
+                        )}"
+                        target="_blank"
+                        class="btn-primary"
+                        style="width: 100%; text-align: center;"
+                    >
+                        {$lang === "ar" ? "تواصل الآن" : "Contact Now"}
+                    </a>
                 </div>
-
-                {#if project.gallery && project.gallery.length > 0}
-                    <div class="glass" style="padding: 30px;">
-                        <h4 style="margin-bottom: 15px;">معرض الصور</h4>
-                        <div
-                            style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;"
-                        >
-                            {#each project.gallery as img}
-                                <img
-                                    src={img}
-                                    alt="Gallery item"
-                                    style="width: 100%; border-radius: 8px; cursor: pointer;"
-                                />
-                            {/each}
-                        </div>
-                    </div>
-                {/if}
             </div>
         </div>
     </div>
@@ -125,10 +136,5 @@
 <style>
     .prose :global(p) {
         margin-bottom: 20px;
-    }
-    .prose :global(h2),
-    .prose :global(h3) {
-        margin: 30px 0 15px;
-        color: white;
     }
 </style>
