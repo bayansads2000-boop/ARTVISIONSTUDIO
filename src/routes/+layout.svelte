@@ -35,108 +35,107 @@
 	/>
 </svelte:head>
 
-<nav
-	class="glass"
-	style="position: sticky; top: 0; z-index: 1000; margin: 20px; padding: 10px 40px; display: flex; justify-content: space-between; align-items: center;"
+<div
+	style="--primary: {settings?.theme?.primary_color ||
+		'#e31e24'}; --bg-dark: {settings?.theme?.bg_color ||
+		'#0a0a0a'}; min-height: 100vh; background-color: var(--bg-dark); color: white;"
 >
-	<div class="logo">
-		<a
-			href="/"
-			style="display: flex; align-items: center; height: 50px; width: 150px; overflow: hidden;"
-		>
-			{#if settings?.basic_info?.logo}
-				<img
-					src={settings.basic_info.logo}
-					alt={settings.basic_info.site_title}
-					style="height: 100%; width: 100%; object-fit: contain; object-position: center;"
-				/>
-			{:else}
-				<Logo />
-			{/if}
-		</a>
-	</div>
+	<nav
+		class="glass"
+		style="position: sticky; top: 0; z-index: 1000; margin: 20px; padding: 10px 40px; display: flex; justify-content: space-between; align-items: center;"
+	>
+		<div class="logo">
+			<a
+				href="/"
+				style="display: flex; align-items: center; height: 50px; width: 150px; overflow: hidden;"
+			>
+				{#if settings?.basic_info?.logo}
+					<img
+						src={settings.basic_info.logo}
+						alt={settings.basic_info.site_title}
+						style="height: 100%; width: 100%; object-fit: contain; object-position: center;"
+					/>
+				{:else}
+					<Logo />
+				{/if}
+			</a>
+		</div>
 
-	<ul style="display: flex; gap: 30px; font-weight: 600;">
-		<li><a href="/">الرئيسية</a></li>
-		<li><a href="/#portfolio">أعمالنا</a></li>
-		<li><a href="/packages">الباقات</a></li>
-		<li><a href="/#contact">اتصل بنا</a></li>
-	</ul>
+		<ul style="display: flex; gap: 30px; font-weight: 600;">
+			<li><a href="/">الرئيسية</a></li>
+			<li><a href="/#portfolio">أعمالنا</a></li>
+			<li><a href="/packages">الباقات</a></li>
+			<li><a href="/#contact">اتصل بنا</a></li>
+		</ul>
+
+		<a
+			href="https://wa.me/{settings?.contact?.whatsapp}"
+			class="btn-primary"
+			style="padding: 8px 20px; font-size: 0.9rem;">ابدأ مشروعك</a
+		>
+	</nav>
+
+	<main>
+		{@render children()}
+	</main>
 
 	<a
 		href="https://wa.me/{settings?.contact?.whatsapp}"
-		class="btn-primary"
-		style="padding: 8px 20px; font-size: 0.9rem;">ابدأ مشروعك</a
+		target="_blank"
+		class="whatsapp-btn"
+		aria-label="Contact us on WhatsApp"
+		style="position: fixed; bottom: 30px; left: 30px; width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); z-index: 1000; transition: var(--transition);"
 	>
-</nav>
+		<svg width="35" height="35" viewBox="0 0 24 24" fill="white">
+			<path
+				d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.171.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793 0-.853.448-1.274.607-1.448.159-.174.347-.217.463-.217l.333.004c.101.005.241-.038.376.289.135.327.463 1.129.503 1.21.04.081.066.175.012.28-.054.106-.081.182-.162.277-.081.095-.174.159-.241.241-.073.089-.153.185-.065.337.088.152.392.648.841 1.048.577.513 1.063.673 1.216.749.153.076.241.063.333-.044.091-.107.391-.455.494-.61.104-.155.207-.13.348-.078.14.053.885.419 1.038.497.153.078.256.115.293.18.037.065.037.377-.107.782z"
+			/>
+		</svg>
+	</a>
 
-<main>
-	{@render children()}
-</main>
-
-<a
-	href="https://wa.me/{settings?.contact?.whatsapp}"
-	target="_blank"
-	class="whatsapp-btn"
-	aria-label="Contact us on WhatsApp"
-	style="position: fixed; bottom: 30px; left: 30px; width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); z-index: 1000; transition: var(--transition);"
->
-	<svg width="35" height="35" viewBox="0 0 24 24" fill="white">
-		<path
-			d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.171.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793 0-.853.448-1.274.607-1.448.159-.174.347-.217.463-.217l.333.004c.101.005.241-.038.376.289.135.327.463 1.129.503 1.21.04.081.066.175.012.28-.054.106-.081.182-.162.277-.081.095-.174.159-.241.241-.073.089-.153.185-.065.337.088.152.392.648.841 1.048.577.513 1.063.673 1.216.749.153.076.241.063.333-.044.091-.107.391-.455.494-.61.104-.155.207-.13.348-.078.14.053.885.419 1.038.497.153.078.256.115.293.18.037.065.037.377-.107.782z"
-		/>
-	</svg>
-</a>
-
-<footer
-	style="background: #050505; border-top: 1px solid rgba(255,255,255,0.1); padding: 80px 0 40px;"
->
-	<div
-		class="container"
-		style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;"
+	<footer
+		style="background: #050505; border-top: 1px solid rgba(255,255,255,0.1); padding: 80px 0 40px;"
 	>
-		<div>
-			<h3 style="color: var(--primary); margin-bottom: 20px;">
-				{settings?.basic_info?.site_title || "Art Vision Studio"}
-			</h3>
-			<p style="color: var(--text-muted);">
-				{settings?.basic_info?.site_description ||
-					"نحول الرؤى الفنية إلى واقع رقمي ملموس. نحن شركاؤك في النجاح والنمو."}
+		<div
+			class="container"
+			style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;"
+		>
+			<div>
+				<h3 style="color: var(--primary); margin-bottom: 20px;">
+					{settings?.basic_info?.site_title || "Art Vision Studio"}
+				</h3>
+				<p style="color: var(--text-muted);">
+					{settings?.basic_info?.site_description ||
+						"نحول الرؤى الفنية إلى واقع رقمي ملموس. نحن شركاؤك في النجاح والنمو."}
+				</p>
+			</div>
+			<div>
+				<h4 style="margin-bottom: 20px;">روابط سريعة</h4>
+				<ul style="color: var(--text-muted); display: grid; gap: 10px;">
+					<li><a href="/">الرئيسية</a></li>
+					<li><a href="/#portfolio">أعمالنا</a></li>
+					<li><a href="/packages">الباقات</a></li>
+					<li><a href="/admin">لوحة التحكم</a></li>
+				</ul>
+			</div>
+			<div>
+				<h4 style="margin-bottom: 20px;">تواصل معنا</h4>
+				<ul style="color: var(--text-muted); display: grid; gap: 10px;">
+					<li>Email: {settings?.contact?.email}</li>
+					<li>Phone: {settings?.contact?.phone}</li>
+					<li>Location: {settings?.contact?.address}</li>
+				</ul>
+			</div>
+		</div>
+
+		<div
+			class="container"
+			style="margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; color: var(--text-muted); font-size: 0.9rem;"
+		>
+			<p>
+				© {new Date().getFullYear()}
+				{settings?.basic_info?.site_title}. All rights reserved.
 			</p>
 		</div>
-		<div>
-			<h4 style="margin-bottom: 20px;">روابط سريعة</h4>
-			<ul style="color: var(--text-muted); display: grid; gap: 10px;">
-				<li><a href="/">الرئيسية</a></li>
-				<li><a href="/#portfolio">أعمالنا</a></li>
-				<li><a href="/packages">الباقات</a></li>
-				<li><a href="/admin">لوحة التحكم</a></li>
-			</ul>
-		</div>
-		<div>
-			<h4 style="margin-bottom: 20px;">تواصل معنا</h4>
-			<ul style="color: var(--text-muted); display: grid; gap: 10px;">
-				<li>Email: {settings?.contact?.email}</li>
-				<li>Phone: {settings?.contact?.phone}</li>
-				<li>Location: {settings?.contact?.address}</li>
-			</ul>
-		</div>
-	</div>
-
-	<div
-		class="container"
-		style="margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; color: var(--text-muted); font-size: 0.9rem;"
-	>
-		<p>
-			© {new Date().getFullYear()}
-			{settings?.basic_info?.site_title}. All rights reserved.
-		</p>
-	</div>
-</footer>
-
-<style>
-    :root {
-        --primary: {settings?.theme?.primary_color || '#e31e24'};
-        --bg-dark: {settings?.theme?.bg_color || '#0a0a0a'};
-    }
-</style>
+	</footer>
+</div>
