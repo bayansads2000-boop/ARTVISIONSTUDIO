@@ -58,11 +58,7 @@
     <WaterEffect />
 
     <div
-        style="position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.4) 100%); z-index: 1;"
-    ></div>
-
-    <div
-        style="position: absolute; top: -100px; right: -100px; width: 500px; height: 500px; background: radial-gradient(circle, var(--primary) 0%, transparent 70%); opacity: 0.15; z-index: 1;"
+        style="position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.6) 100%); z-index: 1; pointer-events: none;"
     ></div>
 
     <div

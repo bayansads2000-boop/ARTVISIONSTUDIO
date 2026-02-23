@@ -10,11 +10,13 @@
     let material: THREE.ShaderMaterial;
     let frameId: number;
 
+    // A more sophisticated water shader using multiple layers of FBM (Fractal Brownian Motion)
+    // and interactive ripple distortion for a high-end liquid look.
     const vertexShader = `
         varying vec2 vUv;
         void main() {
             vUv = uv;
-            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+            gl_Position = vec4(position, 1.0);
         }
     `;
 
@@ -24,40 +26,66 @@
         uniform vec2 resolution;
         varying vec2 vUv;
 
+        // Perfect organic noise for liquid look
+        float hash(vec2 p) {
+            return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
+        }
+
+        float noise(vec2 p) {
+            vec2 i = floor(p);
+            vec2 f = fract(p);
+            vec2 u = f * f * (3.0 - 2.0 * f);
+            return mix(mix(hash(i + vec2(0.0, 0.0)), hash(i + vec2(1.0, 0.0)), u.x),
+                       mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y);
+        }
+
+        float fbm(vec2 p) {
+            float v = 0.0;
+            float a = 0.5;
+            vec2 shift = vec2(100.0);
+            mat2 rot = mat2(cos(0.5), sin(0.5), -sin(0.5), cos(0.5));
+            for (int i = 0; i < 5; ++i) {
+                v += a * noise(p);
+                p = rot * p * 2.0 + shift;
+                a *= 0.5;
+            }
+            return v;
+        }
+
         void main() {
-            vec2 p = -1.0 + 2.0 * vUv;
+            vec2 uv = vUv;
+            vec2 p = (vUv - 0.5) * 2.0;
             p.x *= resolution.x / resolution.y;
 
-            // Interactive wave distortion based on mouse
+            // Mouse interaction - subtle ripple distortion
             float dist = distance(vUv, mouse);
-            float strength = 0.05 / (dist + 0.1);
-            
-            vec2 uv = vUv;
-            float t = time * 0.5;
-            
-            // Layered noise for water effect
-            for(float i=1.0; i<4.0; i++) {
-                uv.x += strength * sin(uv.y * 10.0 + t * i) * 0.1;
-                uv.y += strength * cos(uv.x * 10.0 + t * i) * 0.1;
-            }
+            float mouseImpact = exp(-dist * 10.0) * 0.15;
+            vec2 distortedUv = uv + (vUv - mouse) * mouseImpact;
 
-            // Liquid colors (Deep dark blue to primary red highlights)
-            vec3 color1 = vec3(0.02, 0.02, 0.05); // Dark deep
-            vec3 color2 = vec3(0.1, 0.0, 0.02); // Deep red tint
-            vec3 color3 = vec3(0.8, 0.1, 0.1); // Bright primary red
+            // Deep organic movement
+            float t = time * 0.15;
+            vec2 q = vec2(fbm(distortedUv + t), fbm(distortedUv + vec2(1.0)));
             
-            float noise = sin(uv.x * 3.0 + t) * cos(uv.y * 3.0 + t);
-            vec3 finalColor = mix(color1, color2, noise * 0.5 + 0.5);
+            vec2 r = vec2(fbm(distortedUv + q + vec2(1.7, 9.2) + 0.15 * t),
+                          fbm(distortedUv + q + vec2(8.3, 2.8) + 0.126 * t));
             
-            // Add mouse highlight
-            float glow = exp(-dist * 5.0) * 0.3;
-            finalColor += color3 * glow * strength;
+            float f = fbm(distortedUv + r);
 
-            // Reflective highlights
-            float light = pow(max(0.0, noise), 10.0) * 0.5;
-            finalColor += vec3(1.0) * light;
+            // Palette: Premium Deep Dark (Black / Charcoal / Deep Blood Red)
+            vec3 bgColor = vec3(0.012, 0.012, 0.015); // Almost pure black
+            vec3 accentColor = vec3(0.3, 0.0, 0.02); // Deep garnet
+            vec3 highlightColor = vec3(0.89, 0.12, 0.14); // Art Vision Red
 
-            gl_FragColor = vec4(finalColor, 1.0);
+            // Mix colors based on FBM layers
+            vec3 color = mix(bgColor, accentColor, clamp((f*f)*4.0, 0.0, 1.0));
+            color = mix(color, highlightColor, clamp(length(q), 0.0, 1.0) * 0.1);
+            color = mix(color, vec3(1.0), clamp(length(r.x), 0.0, 1.0) * 0.02); // Subtle specular highlights
+
+            // Apply a nice vignette
+            float vignette = 1.0 - length(p * 0.8) * 0.5;
+            color *= max(vignette, 0.5);
+
+            gl_FragColor = vec4(color, 1.0);
         }
     `;
 
@@ -95,17 +123,17 @@
         mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
 
+        let mouseX = 0.5;
+        let mouseY = 0.5;
+
         const handleMouseMove = (e: MouseEvent) => {
             const rect = container.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width;
-            const y = 1.0 - (e.clientY - rect.top) / rect.height;
-            material.uniforms.mouse.value.set(x, y);
+            mouseX = (e.clientX - rect.left) / rect.width;
+            mouseY = 1.0 - (e.clientY - rect.top) / rect.height;
         };
 
         const handleResize = () => {
             if (!container) return;
-            camera.aspect = container.clientWidth / container.clientHeight;
-            camera.updateProjectionMatrix();
             renderer.setSize(container.clientWidth, container.clientHeight);
             material.uniforms.resolution.value.set(
                 container.clientWidth,
@@ -117,6 +145,12 @@
         window.addEventListener("resize", handleResize);
 
         const animate = (t: number) => {
+            // Smoothler interpolation for mouse for a "calm" feel
+            material.uniforms.mouse.value.x +=
+                (mouseX - material.uniforms.mouse.value.x) * 0.05;
+            material.uniforms.mouse.value.y +=
+                (mouseY - material.uniforms.mouse.value.y) * 0.05;
+
             material.uniforms.time.value = t / 1000;
             renderer.render(scene, camera);
             frameId = requestAnimationFrame(animate);
@@ -141,9 +175,11 @@
         position: absolute;
         top: 0;
         left: 0;
-        width: 100%;
+        width: 100vw;
         height: 100%;
+        margin-left: calc(-50vw + 50%);
         z-index: 0;
         pointer-events: none;
+        overflow: hidden;
     }
 </style>
