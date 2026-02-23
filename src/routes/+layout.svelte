@@ -129,7 +129,7 @@
 				>
 			</li>
 			<li>
-				<a href="/#portfolio"
+				<a href="/portfolio"
 					>{$lang === "ar" ? "أعمالنا" : "Portfolio"}</a
 				>
 			</li>
@@ -138,8 +138,7 @@
 				>
 			</li>
 			<li>
-				<a href="/#contact">{$lang === "ar" ? "اتصل بنا" : "Contact"}</a
-				>
+				<a href="/contact">{$lang === "ar" ? "اتصل بنا" : "Contact"}</a>
 			</li>
 		</ul>
 
@@ -151,10 +150,7 @@
 				{$lang === "ar" ? "EN" : "عربي"}
 			</button>
 			<a
-				href="https://wa.me/{settings?.contact
-					?.whatsapp}?text={encodeURIComponent(
-					settings?.whatsapp_messages?.hero_msg,
-				)}"
+				href="/contact"
 				class="btn-primary"
 				style="padding: 8px 20px; font-size: 0.9rem;"
 				>{$lang === "ar" ? "ابدأ مشروعك" : "Start Project"}</a

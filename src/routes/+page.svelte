@@ -8,6 +8,7 @@
         image: string;
         description_ar: string;
         description_en: string;
+        date?: string;
         slug: string;
     }
 
@@ -33,11 +34,18 @@
     const settings = $derived(data.settings);
 
     const filteredPortfolio = $derived(
-        filter === "all"
-            ? data.portfolio
-            : data.portfolio.filter(
-                  (item: PortfolioItem) => item.category === filter,
-              ),
+        data.portfolio
+            .filter(
+                (item: PortfolioItem) =>
+                    filter === "all" || item.category === filter,
+            )
+            // @ts-ignore
+            .sort(
+                (a, b) =>
+                    new Date(b.date || 0).getTime() -
+                    new Date(a.date || 0).getTime(),
+            )
+            .slice(0, 21),
     );
 </script>
 
@@ -220,6 +228,16 @@
                 </a>
             {/each}
         </div>
+
+        <div style="text-align: center; margin-top: 60px;">
+            <a
+                href="/portfolio"
+                class="btn-primary"
+                style="padding: 15px 40px; font-size: 1.1rem; text-decoration: none; display: inline-block;"
+            >
+                {$lang === "ar" ? "عرض جميع الأعمال" : "View All Works"}
+            </a>
+        </div>
     </div>
 </section>
 
@@ -277,47 +295,27 @@
                 </div>
             </div>
 
-            <form
-                onsubmit={(e) => {
-                    e.preventDefault();
-                    // @ts-ignore
-                    const name = e.currentTarget.elements.name_input.value;
-                    // @ts-ignore
-                    const msg = e.currentTarget.elements.message_input.value;
-                    const fullMsg = `مرحباً، أنا ${name}. ${msg}`;
-                    window.open(
-                        `https://wa.me/${settings?.contact?.whatsapp}?text=${encodeURIComponent(fullMsg)}`,
-                        "_blank",
-                    );
-                }}
-                style="display: grid; gap: 20px; text-align: {$lang === 'ar'
-                    ? 'right'
-                    : 'left'};"
+            <div
+                style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 30px;"
             >
-                <input
-                    name="name_input"
-                    type="text"
-                    required
-                    placeholder={$lang === "ar" ? "الاسم" : "Name"}
-                    style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; color: white; width: 100%;"
-                />
-
-                <textarea
-                    name="message_input"
-                    required
-                    placeholder={$lang === "ar" ? "رسالتك" : "Message"}
-                    rows="5"
-                    style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; color: white;"
-                ></textarea>
-                <button
-                    type="submit"
+                <h3 style="font-size: 2rem;">
+                    {$lang === "ar"
+                        ? "هل لديك مشروع في بالك؟"
+                        : "Have a project in mind?"}
+                </h3>
+                <p style="color: var(--text-muted);">
+                    {$lang === "ar"
+                        ? "تواصل معنا الآن لنبدأ العمل على مشروعك القادم ونحوله إلى واقع."
+                        : "Contact us now to start working on your next project and turn it into reality."}
+                </p>
+                <a
+                    href="/contact"
                     class="btn-primary"
-                    style="justify-content: center;"
-                    >{$lang === "ar"
-                        ? "إرسال عبر واتساب"
-                        : "Send via WhatsApp"}</button
+                    style="padding: 15px 50px; font-size: 1.2rem; text-decoration: none;"
                 >
-            </form>
+                    {$lang === "ar" ? "تواصل معنا الآن" : "Contact Us Now"}
+                </a>
+            </div>
         </div>
     </div>
 </section>
