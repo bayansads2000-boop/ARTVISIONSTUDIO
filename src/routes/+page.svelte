@@ -278,30 +278,33 @@
             </div>
 
             <form
+                onsubmit={(e) => {
+                    e.preventDefault();
+                    // @ts-ignore
+                    const name = e.currentTarget.elements.name_input.value;
+                    // @ts-ignore
+                    const msg = e.currentTarget.elements.message_input.value;
+                    const fullMsg = `مرحباً، أنا ${name}. ${msg}`;
+                    window.open(
+                        `https://wa.me/${settings?.contact?.whatsapp}?text=${encodeURIComponent(fullMsg)}`,
+                        "_blank",
+                    );
+                }}
                 style="display: grid; gap: 20px; text-align: {$lang === 'ar'
                     ? 'right'
                     : 'left'};"
             >
-                <div
-                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;"
-                >
-                    <input
-                        type="text"
-                        placeholder={$lang === "ar" ? "الاسم" : "Name"}
-                        style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; color: white;"
-                    />
-                    <input
-                        type="email"
-                        placeholder={$lang === "ar" ? "الايميل" : "Email"}
-                        style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; color: white;"
-                    />
-                </div>
                 <input
+                    name="name_input"
                     type="text"
-                    placeholder={$lang === "ar" ? "الموضوع" : "Subject"}
-                    style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; color: white;"
+                    required
+                    placeholder={$lang === "ar" ? "الاسم" : "Name"}
+                    style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; color: white; width: 100%;"
                 />
+
                 <textarea
+                    name="message_input"
+                    required
                     placeholder={$lang === "ar" ? "رسالتك" : "Message"}
                     rows="5"
                     style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; color: white;"
@@ -310,7 +313,9 @@
                     type="submit"
                     class="btn-primary"
                     style="justify-content: center;"
-                    >{$lang === "ar" ? "إرسال الرسالة" : "Send Message"}</button
+                    >{$lang === "ar"
+                        ? "إرسال عبر واتساب"
+                        : "Send via WhatsApp"}</button
                 >
             </form>
         </div>
