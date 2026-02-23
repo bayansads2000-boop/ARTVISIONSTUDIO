@@ -27,7 +27,15 @@ collections:
               - {label: "عنوان المتصفح", name: "site_title", widget: "string", default: "Art Vision Studio"}
               - {label: "وصف الـ SEO", name: "site_description", widget: "text"}
               - {label: "اللوجو (صورة)", name: "logo", widget: "image"}
-              - {label: "اللوجو (SVG نصي)", name: "logo_svg", widget: "code", default_language: "html", required: false}
+              - {label: "رابط الموقع (URL)", name: "site_url", widget: "string", default: "https://artvisionstudio.pages.dev"}
+
+          - label: "إعدادات SEO & Social Meta"
+            name: "meta"
+            widget: "object"
+            fields:
+              - {label: "صورة المشاركة (OG Image)", name: "og_image", widget: "image"}
+              - {label: "اسم المنظمة (Organization Name)", name: "org_name", widget: "string", default: "Art Vision Studio"}
+              - {label: "تويتر يوزرناه", name: "twitter_handle", widget: "string", required: false}
 
           - label: "قسم الهيرو (الواجهة الرئيسية)"
             name: "hero"
@@ -37,7 +45,6 @@ collections:
               - {label: "العنوان الملون", name: "title_accent", widget: "string"}
               - {label: "الوصف الفرعي", name: "subtitle", widget: "text"}
               - {label: "نص الزر (CTA)", name: "cta_text", widget: "string"}
-              - {label: "صورة الخلفية", name: "bg_image", widget: "image", required: false}
 
           - label: "روابط التواصل"
             name: "contact"
@@ -67,9 +74,12 @@ collections:
     fields:
       - {label: "اسم العمل", name: "title", widget: "string"}
       - {label: "التصنيف", name: "category", widget: "select", options: [{label: "مواقع ويب", value: "websites"}, {label: "تصميمات", value: "designs"}, {label: "فيديوهات", value: "videos"}]}
-      - {label: "الصورة", name: "image", widget: "image"}
+      - {label: "الصورة الرئيسية", name: "image", widget: "image"}
+      - {label: "معرض الصور (اختياري)", name: "gallery", widget: "list", field: {label: "صورة", widget: "image"}, required: false}
       - {label: "فيديو (YouTube/Vimeo Link)", name: "video_link", widget: "string", required: false}
-      - {label: "الوصف", name: "description", widget: "text"}
+      - {label: "الوصف القصير", name: "description", widget: "string"}
+      - {label: "محتوى العمل بالتفصيل", name: "body", widget: "markdown"}
+      - {label: "رابط مباشر للعمل", name: "link", widget: "string", required: false}
       - {label: "تاريخ العمل", name: "date", widget: "datetime", format: "YYYY-MM-DD"}
 
   - name: "services"
@@ -83,7 +93,6 @@ collections:
       - {label: "اسم الخدمة", name: "title", widget: "string"}
       - {label: "الأيقونة (Emoji or SVG)", name: "icon", widget: "string"}
       - {label: "شرح الخدمة", name: "description", widget: "text"}
-      - {label: "مميزات إضافية", name: "features", widget: "list", required: false}
 
   - name: "packages"
     label: "💎 الباقات والأسعار"
@@ -95,7 +104,4 @@ collections:
     fields:
       - {label: "اسم الباقة", name: "title", widget: "string"}
       - {label: "السعر", name: "price", widget: "string"}
-      - {label: "العملة", name: "currency", widget: "string", default: "$"}
       - {label: "المميزات", name: "features", widget: "list"}
-      - {label: "باقة مميزة؟", name: "popular", widget: "boolean", default: false}
-      - {label: "نص الزر", name: "button_text", widget: "string", default: "اطلب الآن"}

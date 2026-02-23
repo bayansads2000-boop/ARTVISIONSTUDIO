@@ -6,6 +6,7 @@
 	let { children, data }: { children: any; data: { settings: any } } =
 		$props();
 	const settings = $derived(data.settings);
+	const siteUrl = $derived(settings?.basic_info?.site_url || "");
 
 	onMount(() => {
 		const observer = new IntersectionObserver(
@@ -23,16 +24,66 @@
 			.querySelectorAll(".animate-on-scroll")
 			.forEach((el) => observer.observe(el));
 	});
+
+	// Dynamic JSON-LD Schemas
+	const websiteSchema = $derived({
+		"@context": "https://schema.org",
+		"@type": "WebSite",
+		name: settings?.basic_info?.site_title,
+		url: siteUrl,
+	});
+
+	const organizationSchema = $derived({
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		name: settings?.meta?.org_name || settings?.basic_info?.site_title,
+		url: siteUrl,
+		logo: siteUrl + settings?.basic_info?.logo,
+		contactPoint: {
+			"@type": "ContactPoint",
+			telephone: settings?.contact?.phone,
+			contactType: "customer service",
+		},
+	});
 </script>
 
 <svelte:head>
 	<title>{settings?.basic_info?.site_title || "Art Vision Studio"}</title>
 	<meta name="description" content={settings?.basic_info?.site_description} />
+
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content={siteUrl} />
+	<meta property="og:title" content={settings?.basic_info?.site_title} />
+	<meta
+		property="og:description"
+		content={settings?.basic_info?.site_description}
+	/>
+	<meta property="og:image" content={siteUrl + settings?.meta?.og_image} />
+
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image" />
+	<meta property="twitter:url" content={siteUrl} />
+	<meta property="twitter:title" content={settings?.basic_info?.site_title} />
+	<meta
+		property="twitter:description"
+		content={settings?.basic_info?.site_description}
+	/>
+	<meta
+		property="twitter:image"
+		content={siteUrl + settings?.meta?.og_image}
+	/>
+
+	<!-- Favicon -->
 	<link
 		rel="icon"
 		type="image/svg+xml"
 		href={settings?.basic_info?.logo || "/favicon.svg"}
 	/>
+
+	<!-- Structured Data -->
+	{@html `<script type="application/ld+json">${JSON.stringify(websiteSchema)}<\/script>`}
+	{@html `<script type="application/ld+json">${JSON.stringify(organizationSchema)}<\/script>`}
 </svelte:head>
 
 <div

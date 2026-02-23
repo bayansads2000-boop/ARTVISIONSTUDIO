@@ -147,9 +147,10 @@
             style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px;"
         >
             {#each filteredPortfolio as item (item.slug)}
-                <div
+                <a
+                    href="/portfolio/{item.slug}"
                     class="glass animate-on-scroll"
-                    style="overflow: hidden; cursor: pointer; transition: var(--transition);"
+                    style="overflow: hidden; cursor: pointer; transition: var(--transition); text-decoration: none; color: inherit; display: block;"
                 >
                     <div
                         style="height: 250px; background: #222; overflow: hidden; position: relative;"
@@ -183,7 +184,7 @@
                         >
                         <h3 style="margin-top: 5px;">{item.title}</h3>
                     </div>
-                </div>
+                </a>
             {/each}
         </div>
     </div>
