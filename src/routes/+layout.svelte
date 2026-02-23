@@ -124,6 +124,11 @@
 		<ul style="display: flex; gap: 30px; font-weight: 600;">
 			<li><a href="/">{$lang === "ar" ? "الرئيسية" : "Home"}</a></li>
 			<li>
+				<a href="/#services"
+					>{$lang === "ar" ? "خدماتنا" : "Services"}</a
+				>
+			</li>
+			<li>
 				<a href="/#portfolio"
 					>{$lang === "ar" ? "أعمالنا" : "Portfolio"}</a
 				>
