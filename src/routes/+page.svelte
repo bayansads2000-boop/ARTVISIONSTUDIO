@@ -39,17 +39,23 @@
 
 <!-- Hero Section -->
 <section
-    style="min-height: 90vh; display: flex; align-items: center; position: relative; overflow: hidden; padding: 100px 0;"
+    style="min-height: 90vh; display: flex; align-items: center; position: relative; overflow: hidden; padding: 100px 0; background: url({settings
+        ?.hero?.bg_image}) center/cover no-repeat;"
 >
-    <!-- Background decoration -->
+    <!-- Overlay for readability -->
     <div
-        style="position: absolute; top: -100px; right: -100px; width: 500px; height: 500px; background: radial-gradient(circle, var(--primary) 0%, transparent 70%); opacity: 0.15; z-index: -1;"
-    ></div>
-    <div
-        style="position: absolute; bottom: -100px; left: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%); z-index: -1;"
+        style="position: absolute; inset: 0; background: rgba(0,0,0,0.7); z-index: 0;"
     ></div>
 
-    <div class="container" style="text-align: center;">
+    <!-- Background decoration -->
+    <div
+        style="position: absolute; top: -100px; right: -100px; width: 500px; height: 500px; background: radial-gradient(circle, var(--primary) 0%, transparent 70%); opacity: 0.15; z-index: 1;"
+    ></div>
+
+    <div
+        class="container"
+        style="text-align: center; position: relative; z-index: 2;"
+    >
         <h1
             style="font-size: 5rem; line-height: 1.1; margin-bottom: 20px; font-weight: 900; letter-spacing: -2px;"
         >
