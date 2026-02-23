@@ -40,8 +40,19 @@
 	style="position: sticky; top: 0; z-index: 1000; margin: 20px; padding: 10px 40px; display: flex; justify-content: space-between; align-items: center;"
 >
 	<div class="logo">
-		<a href="/" style="display: flex; align-items: center; width: 120px;">
-			<Logo />
+		<a
+			href="/"
+			style="display: flex; align-items: center; height: 50px; width: 150px; overflow: hidden;"
+		>
+			{#if settings?.basic_info?.logo}
+				<img
+					src={settings.basic_info.logo}
+					alt={settings.basic_info.site_title}
+					style="height: 100%; width: 100%; object-fit: contain; object-position: center;"
+				/>
+			{:else}
+				<Logo />
+			{/if}
 		</a>
 	</div>
 
