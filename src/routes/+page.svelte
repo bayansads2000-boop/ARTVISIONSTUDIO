@@ -52,57 +52,42 @@
 
 <!-- Hero Section -->
 <section
-    style="min-height: 90vh; display: flex; align-items: center; position: relative; overflow: hidden; padding: 100px 0; background: #050505;"
+    class="hero-section"
+    style="min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; background: #020205;"
 >
     <!-- Liquid Water Effect -->
     <WaterEffect />
 
-    <div
-        style="position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.6) 100%); z-index: 1; pointer-events: none;"
-    ></div>
+    <div class="vignette"></div>
 
     <div
         class="container"
         style="text-align: center; position: relative; z-index: 2;"
     >
-        <h1
-            style="font-size: clamp(3rem, 10vw, 6rem); line-height: 1; margin-bottom: 25px; font-weight: 950; letter-spacing: -4px; text-transform: uppercase;"
-        >
-            <span style="display: block; opacity: 0.9;"
-                >{settings?.hero?.title || "WE CREATE"}</span
-            >
-            <span
-                style="color: var(--primary); text-shadow: 0 0 30px rgba(227,30,36,0.5);"
-            >
-                {settings?.hero?.title_accent || "VISION"}
-            </span>
-        </h1>
-        <p
-            style="font-size: clamp(1.1rem, 2vw, 1.4rem); color: rgba(255,255,255,0.7); max-width: 800px; margin: 0 auto 50px; line-height: 1.6; font-weight: 500;"
-        >
-            {settings?.hero?.subtitle ||
-                ($lang === "ar"
-                    ? "وكالة إبداعية متخصصة في صناعة المحتوى، تطوير المواقع، وتصميم الهويات البصرية التي تخطف الأنظار."
-                    : "A creative agency specialized in content creation, web development, and visual identities that capture attention.")}
-        </p>
-        <div style="display: flex; gap: 20px; justify-content: center;">
-            <a
-                href="https://wa.me/{settings?.contact
-                    ?.whatsapp}?text={encodeURIComponent(
-                    settings?.whatsapp_messages?.hero_msg,
-                )}"
-                target="_blank"
-                class="btn-primary"
-            >
-                {settings?.hero?.cta_text ||
-                    ($lang === "ar" ? "شاهد أعمالنا" : "View Work")}
-            </a>
-            <a
-                href="/packages"
-                class="btn-primary"
-                style="background: transparent; border: 2px solid white;"
-                >{$lang === "ar" ? "اكتشف الباقات" : "Explore Packages"}</a
-            >
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="hero-subtitle"
+                    >{$lang === "ar" ? "نحن نصنع" : "WE CREATE"}</span
+                >
+                <span class="hero-accent">
+                    {settings?.hero?.title_accent || "VISION"}
+                </span>
+            </h1>
+            <p class="hero-description">
+                {settings?.hero?.subtitle ||
+                    ($lang === "ar"
+                        ? "وكالة إبداعية تحول الخيال إلى واقع رقمي مبهر."
+                        : "A creative agency turning imagination into stunning digital reality.")}
+            </p>
+            <div class="hero-btns">
+                <a href="/portfolio" class="btn-primary main-btn">
+                    {settings?.hero?.cta_text ||
+                        ($lang === "ar" ? "شاهد أعمالنا" : "View Work")}
+                </a>
+                <a href="/contact" class="btn-primary outline-btn">
+                    {$lang === "ar" ? "ابدأ الآن" : "Start Now"}
+                </a>
+            </div>
         </div>
     </div>
 </section>
@@ -204,8 +189,8 @@
                             class="portfolio-img"
                         />
                         <div
-                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); opacity: 0; transition: var(--transition); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;"
                             class="portfolio-overlay"
+                            style="position: absolute; inset: 0; background: rgba(0,0,0,0.8); opacity: 0; transition: var(--transition); display: flex; align-items: center; justify-content: center;"
                         >
                             <span
                                 style="font-weight: 700; color: white; border: 2px solid var(--primary); padding: 10px 20px;"
@@ -324,14 +309,117 @@
 </section>
 
 <style>
+    .vignette {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+            circle at 50% 50%,
+            transparent 0%,
+            rgba(0, 0, 0, 0.8) 100%
+        );
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .hero-content {
+        animation: heroReveal 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes heroReveal {
+        from {
+            opacity: 0;
+            transform: translateY(60px) scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    .hero-title {
+        font-size: clamp(3.5rem, 12vw, 7.5rem);
+        line-height: 0.85;
+        margin-bottom: 35px;
+        font-weight: 950;
+        letter-spacing: -6px;
+        text-transform: uppercase;
+    }
+
+    .hero-subtitle {
+        display: block;
+        opacity: 0.9;
+        font-size: 0.35em;
+        letter-spacing: 18px;
+        margin-bottom: 25px;
+        font-weight: 700;
+        color: var(--text-muted);
+    }
+
+    .hero-accent {
+        color: var(--primary);
+        text-shadow: 0 0 70px rgba(227, 30, 36, 0.7);
+        display: block;
+        filter: drop-shadow(0 0 20px rgba(227, 30, 36, 0.4));
+    }
+
+    .hero-description {
+        font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 900px;
+        margin: 0 auto 60px;
+        line-height: 1.4;
+        font-weight: 500;
+    }
+
+    .hero-btns {
+        display: flex;
+        gap: 30px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .main-btn {
+        padding: 22px 55px;
+        font-size: 1.15rem;
+        box-shadow: 0 15px 40px rgba(227, 30, 36, 0.4);
+    }
+
+    .outline-btn {
+        background: transparent;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        padding: 22px 55px;
+        font-size: 1.15rem;
+        transition: all 0.3s ease;
+    }
+
+    .outline-btn:hover {
+        border-color: white;
+        background: white;
+        color: black;
+    }
+
     .glass:hover {
         transform: translateY(-10px);
         border-color: var(--primary);
     }
-    .portfolio-img:hover {
+
+    .portfolio-img {
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass:hover .portfolio-img {
         transform: scale(1.1);
     }
+
     .glass:hover .portfolio-overlay {
         opacity: 1;
+    }
+
+    .section-title {
+        font-size: 3.5rem;
+        font-weight: 900;
+        margin-bottom: 60px;
+        text-align: center;
+        letter-spacing: -2px;
     }
 </style>
