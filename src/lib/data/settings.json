@@ -2,18 +2,12 @@
   "basic_info": {
     "site_title": "Art Vision Studio",
     "site_description": "وكالة سوشيال ميديا إبداعية متخصصة في التصميم والبرمجة والتصوير والمونتاج",
-    "logo": [
-      "/favicon.svg"
-    ],
-    "favicon": [
-      "/favicon.svg"
-    ],
+    "logo": "/favicon.svg",
+    "favicon": "/favicon.svg",
     "site_url": "https://artvisionstudio.pages.dev"
   },
   "meta": {
-    "og_image": [
-      "/favicon.svg"
-    ],
+    "og_image": "/favicon.svg",
     "org_name": "Art Vision Studio"
   },
   "whatsapp_messages": {

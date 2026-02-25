@@ -13,10 +13,13 @@
 	const siteUrl = $derived(
 		(settings?.basic_info?.site_url || "").replace(/\/$/, ""),
 	);
-	const getAssetUrl = (path: string) => {
+	const getAssetUrl = (path: any) => {
 		if (!path) return "";
-		if (path.startsWith("http")) return path;
-		return siteUrl + (path.startsWith("/") ? "" : "/") + path;
+		// If path is an array, take the first element
+		const actualPath = Array.isArray(path) ? path[0] : path;
+		if (typeof actualPath !== "string") return "";
+		if (actualPath.startsWith("http")) return actualPath;
+		return siteUrl + (actualPath.startsWith("/") ? "" : "/") + actualPath;
 	};
 
 	onMount(() => {
