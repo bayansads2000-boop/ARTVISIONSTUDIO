@@ -2,10 +2,8 @@ backend:
   name: github
   repo: bayansads2000-boop/ARTVISIONSTUDIO
   branch: main
-
-local_backend: true
-
-publish_mode: editorial_workflow
+  base_url: https://artvisionstudio.pages.dev
+  auth_endpoint: auth
 
 media_folder: "static/uploads"
 public_folder: "/uploads"
