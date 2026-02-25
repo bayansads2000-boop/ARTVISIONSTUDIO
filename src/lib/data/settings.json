@@ -1,7 +1,7 @@
 {
   "basic_info": {
     "site_title": "Art Vision Studio",
-    "site_description": "وكالة سوشيال ميديا إبداعية متخصصة في التصميم والبرمجة",
+    "site_description": "وكالة سوشيال ميديا إبداعية متخصصة في التصميم والبرمجة والتصوير والمونتاج",
     "logo": "/favicon.svg",
     "favicon": "/favicon.svg",
     "site_url": "https://artvisionstudio.pages.dev"
@@ -12,8 +12,8 @@
   },
   "whatsapp_messages": {
     "hero_msg": "مرحباً ART VISION، أريد الاستفسار عن خدماتكم.",
-    "package_msg": "مرحباً، أريد الاشتراك في باقة: ",
-    "portfolio_msg": "مرحباً، أعجبني هذا العمل وأريد تنفيذ شيء مشابه: "
+    "package_msg": "مرحباً، أريد الاشتراك في باقة:",
+    "portfolio_msg": "مرحباً، أعجبني هذا العمل وأريد تنفيذ شيء مشابه:"
   },
   "hero": {
     "subtitle_prefix_ar": "نحن نرتقي بـ",
