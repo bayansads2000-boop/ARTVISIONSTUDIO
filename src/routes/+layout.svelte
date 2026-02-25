@@ -406,6 +406,7 @@
 				class="footer-col"
 				style="text-align: {$lang === 'ar' ? 'right' : 'left'};"
 			>
+<<<<<<< HEAD
 				<div class="footer-logo" style="margin-bottom: 25px;">
 					<a href="/" style="display: block; width: 150px;">
 						{#if settings?.basic_info?.logo}
@@ -419,6 +420,11 @@
 						{/if}
 					</a>
 				</div>
+=======
+				<h3 style="color: var(--primary); margin-bottom: 20px;">
+					{settings?.basic_info?.site_title || "Art Vision Studio"}
+				</h3>
+>>>>>>> e2dfc65c14e105a8a94b5e66d80da89ef0ea5286
 				<p style="color: var(--text-muted); margin-bottom: 25px;">
 					{settings?.basic_info?.site_description ?? ""}
 				</p>

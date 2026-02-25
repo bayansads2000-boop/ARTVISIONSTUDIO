@@ -15,6 +15,7 @@
         $props();
 </script>
 
+<<<<<<< HEAD
 <section id="services" class="services-advanced">
     <div class="decor-light"></div>
 
@@ -33,6 +34,15 @@
 
         <div class="services-grid-modern">
             {#each services as service, i}
+=======
+<section id="services" class="services-section">
+    <div class="container">
+        <h2 class="section-title">
+            {t(settings, "pages.services.title", $lang)}
+        </h2>
+        <div class="services-grid">
+            {#each services as service}
+>>>>>>> e2dfc65c14e105a8a94b5e66d80da89ef0ea5286
                 <div
                     class="service-card-modern animate-on-scroll"
                     style="--delay: {i * 0.1}s; text-align: {$lang === 'ar'

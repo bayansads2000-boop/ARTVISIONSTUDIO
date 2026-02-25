@@ -9,6 +9,7 @@
   --bg-dark: #070707;
   --bg-card: #0f0f0f;
   --text-main: #ffffff;
+<<<<<<< HEAD
   --text-muted: #888888;
   --font-ar: 'Alexandria', sans-serif;
   --font-en: 'Plus Jakarta Sans', sans-serif;
@@ -18,6 +19,12 @@
   --shape-corner-md: 16px;
   --border-glass: 1px solid rgba(255, 255, 255, 0.08);
 }
+=======
+  --text-muted: #a0a0a0;
+  --font-ar: 'Alexandria', sans-serif;
+  --font-en: 'Plus Jakarta Sans', sans-serif;
+  --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+>>>>>>> e2dfc65c14e105a8a94b5e66d80da89ef0ea5286
 
 /* Noise Texture Overlay */
 body::after {
