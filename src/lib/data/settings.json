@@ -2,12 +2,18 @@
   "basic_info": {
     "site_title": "Art Vision Studio",
     "site_description": "وكالة سوشيال ميديا إبداعية متخصصة في التصميم والبرمجة والتصوير والمونتاج",
-    "logo": "/favicon.svg",
-    "favicon": "/favicon.svg",
+    "logo": [
+      "/favicon.svg"
+    ],
+    "favicon": [
+      "/favicon.svg"
+    ],
     "site_url": "https://artvisionstudio.pages.dev"
   },
   "meta": {
-    "og_image": "/favicon.svg",
+    "og_image": [
+      "/favicon.svg"
+    ],
     "org_name": "Art Vision Studio"
   },
   "whatsapp_messages": {
@@ -25,8 +31,7 @@
     "cta_text_ar": "شاهد أعمالنا",
     "cta_text_en": "View Work",
     "cta_outline_text_ar": "ابدأ الآن",
-    "cta_outline_text_en": "Start Now",
-    "bg_image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=2000"
+    "cta_outline_text_en": "Start Now"
   },
   "pages": {
     "services": {
@@ -83,16 +88,16 @@
     "phone": "+201156060503",
     "address": "القاهرة، مصر"
   },
+  "social": {
+    "facebook": "https://facebook.com/artvision",
+    "instagram": "https://instagram.com/artvision",
+    "youtube": "https://youtube.com/artvision"
+  },
   "theme": {
     "primary_color": "#e31e24",
     "hero_glow_color": "#e31e24",
     "particle_color": "#ffffff",
     "liquid_accent_color": "#18191D",
     "bg_color": "#0a0a0a"
-  },
-  "social": {
-    "facebook": "https://facebook.com/artvision",
-    "instagram": "https://instagram.com/artvision",
-    "youtube": "https://youtube.com/artvision"
   }
 }
