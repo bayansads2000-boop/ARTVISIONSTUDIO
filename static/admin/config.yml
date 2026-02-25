@@ -222,6 +222,18 @@ collections:
     format: "json"
     extension: "json"
     slug: "{{slug}}"
+    view_filters:
+      - {label: "الكل", field: "category", pattern: ""}
+      - {label: "🌐 مواقع ويب", field: "category", pattern: "websites"}
+      - {label: "🎨 تصميمات", field: "category", pattern: "designs"}
+      - {label: "🎬 فيديوهات", field: "category", pattern: "videos"}
+    view_groups:
+      - {label: "التصنيف", field: "category"}
+    sortable_fields:
+      fields: ["title_ar", "date", "category"]
+      default:
+        field: "date"
+        direction: "Descending"
     fields:
       - {label: "اسم العمل (AR)", name: "title_ar", widget: "string", required: true}
       - {label: "اسم العمل (EN)", name: "title_en", widget: "string", required: true}
