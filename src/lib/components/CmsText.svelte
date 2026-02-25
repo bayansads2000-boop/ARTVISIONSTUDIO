@@ -1,5 +1,6 @@
 <script lang="ts">
     import { t } from "$lib/utils/cms";
+    import { lang } from "$lib/stores/lang";
 
     let {
         settings,
@@ -15,7 +16,7 @@
         style?: string;
     } = $props();
 
-    const content = $derived(t(settings, path));
+    const content = $derived(t(settings, path, $lang));
 </script>
 
 {#if content}

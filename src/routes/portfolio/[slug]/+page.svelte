@@ -30,7 +30,7 @@
         <div style="margin-bottom: 60px; text-align: center;">
             <span
                 style="color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 2px;"
-                >{t(settings, `common.${project.category}`)}</span
+                >{t(settings, `common.${project.category}`, $lang)}</span
             >
             <h1 style="font-size: 4rem; margin: 10px 0 20px; font-weight: 900;">
                 {$lang === "ar" ? project.title_ar : project.title_en}
@@ -86,7 +86,7 @@
                     : 'left'};"
             >
                 <h3 style="margin-bottom: 20px; color: var(--primary);">
-                    {t(settings, "common.project_details")}
+                    {t(settings, "common.project_details", $lang)}
                 </h3>
                 <div class="prose">
                     {@html marked.parse(htmlBody)}
@@ -101,7 +101,7 @@
                         : 'left'};"
                 >
                     <h4 style="margin-bottom: 15px;">
-                        {t(settings, "common.order_similar_work")}
+                        {t(settings, "common.order_similar_work", $lang)}
                     </h4>
                     <p
                         style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;"
@@ -122,7 +122,7 @@
                         class="btn-primary"
                         style="width: 100%; text-align: center;"
                     >
-                        {t(settings, "common.contact_now")}
+                        {t(settings, "common.contact_now", $lang)}
                     </a>
                 </div>
             </div>

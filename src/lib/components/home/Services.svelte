@@ -18,7 +18,7 @@
 <section id="services" class="services-section">
     <div class="container">
         <h2 class="section-title">
-            {t(settings, "pages.services.title")}
+            {t(settings, "pages.services.title", $lang)}
         </h2>
         <div class="services-grid">
             {#each services as service}

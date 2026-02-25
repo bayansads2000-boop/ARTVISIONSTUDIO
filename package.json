@@ -24,6 +24,7 @@
 	},
 	"dependencies": {
 		"marked": "^17.0.3",
+		"swiper": "^12.1.2",
 		"three": "^0.183.1"
 	}
 }

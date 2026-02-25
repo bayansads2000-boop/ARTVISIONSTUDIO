@@ -204,6 +204,7 @@ collections:
       - {label: "التصنيف", name: "category", widget: "select", options: [{label: "مواقع ويب", value: "websites"}, {label: "تصميمات", value: "designs"}, {label: "فيديوهات", value: "videos"}], required: true}
       - {label: "الصورة الرئيسية", name: "image", widget: "image", required: true}
       - {label: "رابط فيديو (YouTube/Vimeo)", name: "video_link", widget: "string", required: false}
+      - {label: "صورة مصغرة للفيديو (Thumbnail)", name: "thumbnail", widget: "image", required: false}
       - {label: "الوصف القصير (AR)", name: "description_ar", widget: "string", required: true}
       - {label: "الوصف القصير (EN)", name: "description_en", widget: "string", required: true}
       - {label: "محتوى العمل بالتفصيل (AR)", name: "body_ar", widget: "markdown", required: true}
@@ -236,5 +237,20 @@ collections:
       - {label: "اسم الباقة (EN)", name: "title_en", widget: "string", required: true}
       - {label: "السعر", name: "price", widget: "string", required: true}
       - {label: "المميزات (AR)", name: "features_ar", widget: "list", required: true}
-      - {label: "المميزات (EN)", name: "features_en", widget: "list", required: true}
+      - {label: "الأجنحة (EN)", name: "features_en", widget: "list", required: true}
       - {label: "الأكثر طلباً؟", name: "popular", widget: "boolean", default: false}
+
+  - name: "team"
+    label: "👥 فريق العمل"
+    folder: "src/lib/data/team"
+    create: true
+    format: "json"
+    extension: "json"
+    slug: "{{slug}}"
+    fields:
+      - {label: "الاسم (AR)", name: "name_ar", widget: "string", required: true}
+      - {label: "الاسم (EN)", name: "name_en", widget: "string", required: true}
+      - {label: "الصورة", name: "image", widget: "image", required: true}
+      - {label: "الوصف القصير (AR)", name: "description_ar", widget: "string", required: true}
+      - {label: "الوصف القصير (EN)", name: "description_en", widget: "string", required: true}
+      - {label: "الترتيب", name: "order", widget: "number", default: 0, required: false}

@@ -24,11 +24,7 @@
         style="text-align: center; position: relative; z-index: 2;"
     >
         <div class="hero-content">
-            <h1
-                class="hero-title"
-                style="--hero-glow: {raw(settings, 'theme.hero_glow_color') ??
-                    '#e31e24'}"
-            >
+            <h1 class="hero-title">
                 <CmsText
                     {settings}
                     path="hero.subtitle_prefix"
@@ -51,14 +47,14 @@
             />
 
             <div class="hero-btns">
-                {#if t(settings, "hero.cta_text")}
+                {#if t(settings, "hero.cta_text", $lang)}
                     <a href="/portfolio" class="btn-primary main-btn">
-                        {t(settings, "hero.cta_text")}
+                        {t(settings, "hero.cta_text", $lang)}
                     </a>
                 {/if}
-                {#if t(settings, "hero.cta_outline_text")}
+                {#if t(settings, "hero.cta_outline_text", $lang)}
                     <a href="/contact" class="btn-primary outline-btn">
-                        {t(settings, "hero.cta_outline_text")}
+                        {t(settings, "hero.cta_outline_text", $lang)}
                     </a>
                 {/if}
             </div>
@@ -96,41 +92,42 @@
 
     .hero-title {
         font-size: clamp(2.5rem, 10vw, 7.5rem);
-        line-height: 0.9;
+        line-height: 1.1; /* Increased to prevent overlap and glow issues */
         margin-bottom: 25px;
         font-weight: 950;
-        letter-spacing: -3px;
+        letter-spacing: -1px; /* Reduced negative spacing to prevent character crowding */
         text-transform: uppercase;
+        -webkit-font-smoothing: antialiased; /* Ensure sharp rendering */
+        -moz-osx-font-smoothing: grayscale;
     }
 
     :global(.hero-subtitle) {
         display: block;
         opacity: 0.9;
         font-size: 0.3em;
-        letter-spacing: 8px;
-        margin-bottom: 15px;
+        letter-spacing: 12px; /* Increased to ensure characters like L, E, A, T don't touch */
+        margin-bottom: 20px;
         font-weight: 700;
         color: var(--text-muted);
     }
 
     @media (min-width: 769px) {
         .hero-title {
-            letter-spacing: -6px;
-            line-height: 0.85;
+            letter-spacing: -2px;
+            line-height: 1.1;
             margin-bottom: 35px;
         }
         :global(.hero-subtitle) {
-            font-size: 0.35em;
-            letter-spacing: 18px;
-            margin-bottom: 25px;
+            font-size: 0.32em;
+            letter-spacing: 16px; /* Optimized for large screens */
+            margin-bottom: 30px;
         }
     }
 
     :global(.hero-accent) {
         color: var(--palette-grey-0);
-        text-shadow: 0 0 50px var(--hero-glow);
         display: block;
-        filter: drop-shadow(0 0 20px var(--hero-glow));
+        line-height: 0.9; /* Specific tight line-height just for the accent part if needed */
     }
 
     :global(.hero-description) {

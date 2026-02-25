@@ -71,5 +71,10 @@
     "particle_color": "#ffffff",
     "liquid_accent_color": "#18191D",
     "bg_color": "#0a0a0a"
+  },
+  "social": {
+    "facebook": "https://facebook.com/artvision",
+    "instagram": "https://instagram.com/artvision",
+    "youtube": "https://youtube.com/artvision"
   }
 }

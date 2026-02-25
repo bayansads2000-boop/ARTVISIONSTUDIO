@@ -1,40 +1,38 @@
 <script lang="ts">
+    import { onMount } from "svelte";
     import { lang } from "$lib/stores/lang";
     import PortfolioCard from "$lib/components/PortfolioCard.svelte";
     import { t } from "$lib/utils/cms";
+    import { register } from "swiper/element/bundle";
 
     interface PortfolioItem {
         title_ar: string;
         title_en: string;
         category: string;
         image: string;
+        thumbnail?: string;
+        video_link?: string;
         slug: string;
     }
 
     let { data }: { data: { portfolio: PortfolioItem[]; settings: any } } =
         $props();
     const settings = $derived(data.settings);
-    let filter = $state("all");
-    let limit = $state(12);
 
-    const filteredPortfolio = $derived(
-        filter === "all"
-            ? data.portfolio
-            : data.portfolio.filter(
-                  (item: PortfolioItem) => item.category === filter,
-              ),
-    );
+    onMount(() => {
+        register();
+    });
 
-    const visibleItems = $derived(filteredPortfolio.slice(0, limit));
+    const categories = ["websites", "designs", "videos"];
 
-    function loadMore() {
-        limit += 12;
-    }
+    const getItemsByCategory = (cat: string) => {
+        return data.portfolio.filter((item) => item.category === cat);
+    };
 </script>
 
 <svelte:head>
     <title
-        >{t(settings, "pages.portfolio.title") ||
+        >{t(settings, "pages.portfolio.title", $lang) ||
             ($lang === "ar" ? "أعمالنا" : "Portfolio")} | Art Vision Studio</title
     >
 </svelte:head>
@@ -43,66 +41,75 @@
     <div class="container">
         <div class="portfolio-header">
             <h1 class="page-title">
-                {t(settings, "pages.portfolio.title")}
+                {t(settings, "pages.portfolio.title", $lang)}
             </h1>
             <p class="page-desc">
-                {t(settings, "pages.portfolio.desc")}
+                {t(settings, "pages.portfolio.desc", $lang)}
             </p>
         </div>
+    </div>
 
-        <!-- Filters -->
-        <div class="filter-container">
-            <div class="filter-scroll">
-                {#each ["all", "websites", "designs", "videos"] as cat}
-                    <button
-                        onclick={() => {
-                            filter = cat;
-                            limit = 12;
-                        }}
-                        class="btn-primary filter-btn"
-                        style="background: {filter === cat
-                            ? 'var(--primary)'
-                            : 'rgba(255,255,255,0.1)'}"
-                    >
-                        {t(settings, `common.${cat}`)}
-                    </button>
-                {/each}
-            </div>
-        </div>
+    <div class="categories-containers">
+        {#each categories as cat}
+            {#if getItemsByCategory(cat).length > 0}
+                <div class="category-section">
+                    <div class="container">
+                        <h2 class="category-title">
+                            {t(settings, `common.${cat}`, $lang)}
+                        </h2>
+                    </div>
 
-        <!-- Grid -->
-        <div class="portfolio-grid">
-            {#each visibleItems as item (item.slug)}
-                <div class="grid-item">
-                    <PortfolioCard {item} />
+                    <div class="swiper-full-wrapper">
+                        <swiper-container
+                            init="true"
+                            loop="true"
+                            autoplay-delay="3000"
+                            autoplay-disable-on-interaction="false"
+                            speed="1200"
+                            slides-per-view="auto"
+                            space-between="20"
+                            mousewheel="true"
+                            pagination="false"
+                            navigation="false"
+                            class="portfolio-swiper"
+                        >
+                            {#each getItemsByCategory(cat) as item (item.slug)}
+                                <swiper-slide class="portfolio-slide">
+                                    <PortfolioCard {item} />
+                                </swiper-slide>
+                            {/each}
+                        </swiper-container>
+                    </div>
                 </div>
-            {/each}
-        </div>
-
-        {#if limit < filteredPortfolio.length}
-            <div class="load-more-container">
-                <button onclick={loadMore} class="btn-primary load-more-btn">
-                    {t(settings, "common.load_more")}
-                </button>
-            </div>
-        {/if}
+            {/if}
+        {/each}
     </div>
 </section>
 
 <style>
     .portfolio-page {
         padding: 150px 0 100px;
+        overflow-x: hidden;
     }
 
     .portfolio-header {
         text-align: center;
-        margin-bottom: 60px;
+        margin-bottom: 80px;
     }
 
     .page-title {
-        font-size: 4rem;
-        font-weight: 900;
+        font-size: clamp(3rem, 8vw, 5rem);
+        font-weight: 950;
         margin-bottom: 20px;
+        background: linear-gradient(
+            to bottom,
+            #fff 30%,
+            rgba(255, 255, 255, 0.5)
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -0.02em;
     }
 
     .page-desc {
@@ -110,32 +117,67 @@
         color: var(--text-muted);
         max-width: 600px;
         margin: 0 auto;
+        opacity: 0.8;
     }
 
-    .filter-container {
-        margin-bottom: 50px;
-        display: flex;
-        justify-content: center;
+    .category-section {
+        margin-bottom: 100px;
     }
 
-    .filter-scroll {
-        display: flex;
-        gap: 15px;
+    .category-title {
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 30px;
+        position: relative;
+        display: inline-block;
+        padding-left: 20px;
     }
 
-    .portfolio-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 20px;
+    :global([dir="rtl"]) .category-title {
+        padding-left: 0;
+        padding-right: 20px;
     }
 
-    .load-more-container {
-        text-align: center;
-        margin-top: 60px;
+    .category-title::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 80%;
+        background: var(--primary);
+        border-radius: 2px;
     }
 
-    .load-more-btn {
-        padding: 15px 40px;
+    :global([dir="rtl"]) .category-title::before {
+        left: auto;
+        right: 0;
+    }
+
+    .swiper-full-wrapper {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        padding: 20px 0;
+    }
+
+    .portfolio-slide {
+        width: 400px;
+        height: auto;
+        transition: transform 0.5s ease;
+    }
+
+    /* .portfolio-slide:hover {
+        transform: scale(1.02);
+        z-index: 10;
+    } */
+
+    swiper-container::part(container) {
+        padding: 20px 5vw;
     }
 
     @media (max-width: 768px) {
@@ -143,43 +185,21 @@
             padding: 100px 0 60px;
         }
 
-        .page-title {
-            font-size: 2.5rem;
+        .category-section {
+            margin-bottom: 60px;
         }
 
-        .page-desc {
-            font-size: 1rem;
+        .category-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
         }
 
-        .filter-container {
-            justify-content: flex-start;
-            overflow-x: auto;
-            padding-bottom: 15px;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
+        .portfolio-slide {
+            width: 85vw;
         }
 
-        .filter-container::-webkit-scrollbar {
-            display: none;
-        }
-
-        .filter-scroll {
-            padding: 0 15px;
-        }
-
-        .filter-btn {
-            white-space: nowrap;
-            padding: 12px 25px;
-            font-size: 0.9rem;
-        }
-
-        .portfolio-grid {
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .load-more-btn {
-            width: 100%;
+        .swiper-full-wrapper {
+            padding: 10px 0;
         }
     }
 </style>

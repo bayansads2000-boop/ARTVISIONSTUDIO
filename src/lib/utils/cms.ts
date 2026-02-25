@@ -18,10 +18,10 @@ interface Settings {
  * @param path The path to the setting (e.g., 'hero.title')
  * @returns The localized string or an empty string
  */
-export function t(settings: Settings, path: string): string {
+export function t(settings: Settings, path: string, forcedLang?: string): string {
     if (!settings) return "";
 
-    const currentLang = get(lang);
+    const currentLang = forcedLang || get(lang);
     const otherLang = currentLang === "ar" ? "en" : "ar";
     const parts = path.split('.');
 
