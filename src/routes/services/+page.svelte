@@ -18,7 +18,7 @@
 
 <svelte:head>
     <title
-        >{t(settings, "pages.services.title") ||
+        >{t(settings, "pages.services.title", $lang) ||
             ($lang === "ar" ? "خدماتنا" : "Our Services")} | Art Vision Studio</title
     >
 </svelte:head>
@@ -27,12 +27,12 @@
     <div class="container">
         <div style="text-align: center; margin-bottom: 80px;">
             <h1 style="font-size: 4rem; font-weight: 900; margin-bottom: 20px;">
-                {t(settings, "pages.services.title")}
+                {t(settings, "pages.services.title", $lang)}
             </h1>
             <p
                 style="font-size: 1.2rem; color: var(--text-muted); max-width: 700px; margin: 0 auto;"
             >
-                {t(settings, "pages.services.desc")}
+                {t(settings, "pages.services.desc", $lang)}
             </p>
         </div>
 

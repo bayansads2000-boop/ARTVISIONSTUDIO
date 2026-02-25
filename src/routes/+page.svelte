@@ -2,6 +2,7 @@
     import Hero from "$lib/components/home/Hero.svelte";
     import Services from "$lib/components/home/Services.svelte";
     import Portfolio from "$lib/components/home/Portfolio.svelte";
+    import Team from "$lib/components/home/Team.svelte";
     import ContactCTA from "$lib/components/home/ContactCTA.svelte";
 
     interface PortfolioItem {
@@ -24,12 +25,23 @@
         slug: string;
     }
 
+    interface TeamMember {
+        name_ar: string;
+        name_en: string;
+        image: string;
+        description_ar: string;
+        description_en: string;
+        slug: string;
+        order?: number;
+    }
+
     let {
         data,
     }: {
         data: {
             portfolio: PortfolioItem[];
             services: ServiceItem[];
+            team: TeamMember[];
             settings: any;
         };
     } = $props();
@@ -40,4 +52,5 @@
 <Hero {settings} />
 <Services services={data.services} {settings} />
 <Portfolio portfolio={data.portfolio} {settings} />
+<Team team={data.team} {settings} />
 <ContactCTA {settings} />

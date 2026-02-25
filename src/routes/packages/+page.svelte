@@ -9,10 +9,10 @@
     <div class="container">
         <div class="packages-header">
             <h1 class="page-title">
-                {t(settings, "pages.packages.title")}
+                {t(settings, "pages.packages.title", $lang)}
             </h1>
             <p class="page-desc">
-                {t(settings, "pages.packages.desc")}
+                {t(settings, "pages.packages.desc", $lang)}
             </p>
         </div>
 
@@ -24,7 +24,7 @@
                 >
                     {#if pkg.popular}
                         <div class="popular-badge">
-                            {t(settings, "common.popular")}
+                            {t(settings, "common.popular", $lang)}
                         </div>
                     {/if}
 
@@ -56,7 +56,7 @@
                             ? 'var(--primary)'
                             : 'transparent'};"
                     >
-                        {t(settings, "common.order_now")}
+                        {t(settings, "common.order_now", $lang)}
                     </a>
                 </div>
             {/each}

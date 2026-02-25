@@ -13,10 +13,10 @@
                 style="text-align: {$lang === 'ar' ? 'right' : 'left'};"
             >
                 <h2 class="contact-title">
-                    {t(settings, "contact_cta.title")}
+                    {t(settings, "contact_cta.title", $lang)}
                 </h2>
                 <p class="contact-desc">
-                    {t(settings, "contact_cta.desc")}
+                    {t(settings, "contact_cta.desc", $lang)}
                 </p>
 
                 <div class="contact-details">
@@ -24,7 +24,7 @@
                         <div class="detail-icon">📍</div>
                         <div>
                             <h4 class="detail-label">
-                                {t(settings, "common.location")}
+                                {t(settings, "common.location", $lang)}
                             </h4>
                             <p>{settings?.contact?.address ?? ""}</p>
                         </div>
@@ -33,7 +33,7 @@
                         <div class="detail-icon">📧</div>
                         <div>
                             <h4 class="detail-label">
-                                {t(settings, "common.email")}
+                                {t(settings, "common.email", $lang)}
                             </h4>
                             <p>{settings?.contact?.email ?? ""}</p>
                         </div>
@@ -43,14 +43,14 @@
 
             <div class="contact-action">
                 <h3 class="action-title">
-                    {t(settings, "contact_cta.box_title")}
+                    {t(settings, "contact_cta.box_title", $lang)}
                 </h3>
                 <p class="action-desc">
-                    {t(settings, "contact_cta.box_desc")}
+                    {t(settings, "contact_cta.box_desc", $lang)}
                 </p>
-                {#if t(settings, "contact_cta.btn_text")}
+                {#if t(settings, "contact_cta.btn_text", $lang)}
                     <a href="/contact" class="btn-primary contact-btn">
-                        {t(settings, "contact_cta.btn_text")}
+                        {t(settings, "contact_cta.btn_text", $lang)}
                     </a>
                 {/if}
             </div>

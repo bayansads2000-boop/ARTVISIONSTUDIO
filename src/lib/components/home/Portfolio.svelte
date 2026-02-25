@@ -1,137 +1,234 @@
 <script lang="ts">
+    import { onMount } from "svelte";
     import { lang } from "$lib/stores/lang";
     import PortfolioCard from "$lib/components/PortfolioCard.svelte";
     import { t } from "$lib/utils/cms";
+    import { register } from "swiper/element/bundle";
 
     interface PortfolioItem {
         title_ar: string;
         title_en: string;
         category: string;
         image: string;
-        description_ar: string;
-        description_en: string;
-        date?: string;
+        thumbnail?: string;
+        video_link?: string;
         slug: string;
     }
 
     let { portfolio, settings }: { portfolio: PortfolioItem[]; settings: any } =
         $props();
-    let filter = $state("all");
 
-    const filteredPortfolio = $derived(
-        portfolio
-            .filter(
-                (item: PortfolioItem) =>
-                    filter === "all" || item.category === filter,
-            )
-            .sort((a, b) => {
-                const dateA = a.date ? new Date(a.date).getTime() : 0;
-                const dateB = b.date ? new Date(b.date).getTime() : 0;
-                return dateB - dateA;
-            })
-            .slice(0, 21),
-    );
+    onMount(() => {
+        register();
+    });
+
+    const categories = ["websites", "designs", "videos"];
+
+    const getItemsByCategory = (cat: string) => {
+        return portfolio.filter((item) => item.category === cat).slice(0, 10);
+    };
+    const swiperBreakpoints = {
+        0: {
+            slidesPerView: 2,
+            spaceBetween: 15,
+        },
+        768: {
+            slidesPerView: "auto",
+            spaceBetween: 30,
+        },
+    };
 </script>
 
-<section id="portfolio" class="portfolio-section">
+<section id="portfolio" class="portfolio-home">
     <div class="container">
         <h2 class="section-title">
-            {t(settings, "pages.portfolio.title")}
+            {t(settings, "pages.portfolio.title", $lang)}
         </h2>
+    </div>
 
-        <div class="filter-container">
-            <div class="filter-scroll">
-                {#each ["all", "websites", "designs", "videos"] as cat}
-                    <button
-                        onclick={() => (filter = cat)}
-                        class="btn-primary filter-btn"
-                        style="background: {filter === cat
-                            ? 'var(--primary)'
-                            : 'rgba(255,255,255,0.1)'}"
-                        >{t(settings, `common.${cat}`)}</button
-                    >
-                {/each}
-            </div>
-        </div>
+    <div class="categories-wrapper">
+        {#each categories as cat, i}
+            {#if getItemsByCategory(cat).length > 0}
+                <div class="category-block animate-on-scroll">
+                    <div class="container">
+                        <div class="category-header-minimal">
+                            <h2 class="cat-title-minimal">
+                                {t(settings, `common.${cat}`, $lang)}
+                            </h2>
+                            <div class="header-accent"></div>
+                        </div>
+                    </div>
 
-        <div class="portfolio-grid">
-            {#each filteredPortfolio as item (item.slug)}
-                <PortfolioCard {item} />
-            {/each}
-        </div>
+                    <div class="premium-swiper-wrapper">
+                        <swiper-container
+                            init="true"
+                            loop={getItemsByCategory(cat).length > 2
+                                ? "true"
+                                : "false"}
+                            slides-per-view="2"
+                            space-between="15"
+                            dir={$lang === "ar" ? "rtl" : "ltr"}
+                            autoplay-delay="5000"
+                            speed="1200"
+                            grab-cursor="true"
+                            pagination-type="progressbar"
+                            breakpoints={JSON.stringify(swiperBreakpoints)}
+                            class="home-portfolio-swiper"
+                        >
+                            {#each getItemsByCategory(cat) as item (item.slug)}
+                                <swiper-slide class="home-portfolio-slide">
+                                    <PortfolioCard {item} />
+                                </swiper-slide>
+                            {/each}
+                        </swiper-container>
 
+                        <!-- Premium Progress Indicator -->
+                        <div class="swiper-progress-wrap">
+                            <div class="progress-label">
+                                {$lang === "ar"
+                                    ? "اسحب للاستكشاف"
+                                    : "Swipe to Explore"}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {/if}
+        {/each}
+    </div>
+
+    <div class="container">
         <div class="view-all-container">
             <a href="/portfolio" class="btn-primary view-all-btn">
-                {t(settings, "common.view_all_works")}
+                {t(settings, "common.view_all_works", $lang)}
             </a>
         </div>
     </div>
 </section>
 
 <style>
-    .portfolio-section {
-        padding: 100px 0;
+    .portfolio-home {
+        padding: 120px 0;
+        overflow-x: hidden;
+        background: #050505;
+        position: relative;
     }
 
-    .filter-container {
-        margin-bottom: 50px;
+    .section-title {
+        font-size: 3rem;
+        font-weight: 900;
+        margin-bottom: 60px;
+        text-align: center;
+    }
+
+    .category-block {
+        margin-bottom: 120px;
+        position: relative;
+    }
+
+    .category-header-minimal {
         display: flex;
-        justify-content: center;
-    }
-
-    .filter-scroll {
-        display: flex;
-        gap: 15px;
-        max-width: 100%;
-    }
-
-    .portfolio-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        align-items: center;
         gap: 20px;
+        margin-bottom: 40px;
+    }
+
+    .cat-title-minimal {
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: 900;
+        color: white;
+        margin: 0;
+        letter-spacing: -0.01em;
+    }
+
+    .header-accent {
+        height: 1px;
+        flex: 1;
+        background: linear-gradient(
+            to right,
+            transparent,
+            var(--primary),
+            transparent
+        );
+        opacity: 0.2;
+    }
+
+    :global([dir="rtl"]) .header-accent {
+        background: linear-gradient(
+            to left,
+            transparent,
+            var(--primary),
+            transparent
+        );
+    }
+
+    .premium-swiper-wrapper {
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 0 60px;
+    }
+
+    .swiper-progress-wrap {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .progress-label {
+        font-size: 0.65rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: white;
+        opacity: 0.3;
+    }
+
+    .home-portfolio-slide {
+        height: auto;
+    }
+
+    @media (min-width: 769px) {
+        .home-portfolio-slide {
+            width: 420px;
+        }
+    }
+
+    swiper-container::part(pagination) {
+        height: 2px;
+        background: rgba(255, 255, 255, 0.05);
+        position: relative;
+        bottom: 0;
+        border-radius: 10px;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    swiper-container::part(pagination-progressbar-fill) {
+        background: var(--primary);
     }
 
     .view-all-container {
         text-align: center;
-        margin-top: 60px;
+        margin-top: 20px;
     }
 
     @media (max-width: 768px) {
-        .portfolio-section {
-            padding: 60px 0;
+        .portfolio-home {
+            padding: 80px 0;
         }
 
-        .filter-container {
-            justify-content: flex-start;
-            overflow-x: auto;
-            padding-bottom: 15px;
-            margin-bottom: 30px;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
         }
 
-        .filter-container::-webkit-scrollbar {
-            display: none;
+        swiper-container::part(container) {
+            padding: 20px 2.5vw;
         }
 
-        .filter-scroll {
-            padding: 0 15px;
-        }
-
-        .portfolio-grid {
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .filter-btn {
-            white-space: nowrap;
-            padding: 12px 25px;
-            font-size: 0.9rem;
-        }
-
-        .view-all-btn {
-            width: 100%;
-            display: block;
+        .premium-swiper-wrapper {
+            padding-bottom: 50px;
         }
     }
 </style>

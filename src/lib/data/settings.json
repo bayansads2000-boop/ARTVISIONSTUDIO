@@ -3,6 +3,7 @@
     "site_title": "Art Vision Studio",
     "site_description": "وكالة سوشيال ميديا إبداعية متخصصة في التصميم والبرمجة",
     "logo": "/favicon.svg",
+    "favicon": "/favicon.svg",
     "site_url": "https://artvisionstudio.pages.dev"
   },
   "meta": {
@@ -45,6 +46,12 @@
       "title_en": "Our Creative Packages",
       "desc_ar": "اختر الباقة المناسبة لاحتياجات عملك وانطلق معنا اليوم.",
       "desc_en": "Choose the right package for your business needs and start with us today."
+    },
+    "team": {
+      "title_ar": "فريق العمل الإبداعي",
+      "title_en": "Our Creative Team",
+      "desc_ar": "نخبة من المبدعين يعملون بشغف لتحويل رؤيتك إلى واقع.",
+      "desc_en": "A team of creatives working with passion to turn your vision into reality."
     }
   },
   "contact_cta": {
@@ -71,5 +78,10 @@
     "particle_color": "#ffffff",
     "liquid_accent_color": "#18191D",
     "bg_color": "#0a0a0a"
+  },
+  "social": {
+    "facebook": "https://facebook.com/artvision",
+    "instagram": "https://instagram.com/artvision",
+    "youtube": "https://youtube.com/artvision"
   }
 }

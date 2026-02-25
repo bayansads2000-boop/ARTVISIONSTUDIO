@@ -26,9 +26,10 @@ collections:
             name: "basic_info"
             widget: "object"
             fields:
-              - {label: "عنوان المتصفح", name: "site_title", widget: "string", default: "Art Vision Studio", required: true}
+              - {label: "عنوان الموقع (اسم المشروع)", name: "site_title", widget: "string", default: "Art Vision Studio", required: true}
               - {label: "وصف الـ SEO", name: "site_description", widget: "text", required: true}
-              - {label: "اللوجو (صورة)", name: "logo", widget: "image", required: true}
+              - {label: "اللوجو الأساسي", name: "logo", widget: "image", required: false}
+              - {label: "أيقونة المتصفح (Favicon)", name: "favicon", widget: "image", required: false}
               - {label: "رابط الموقع (URL)", name: "site_url", widget: "string", default: "https://artvisionstudio.pages.dev", required: true}
 
           - label: "إعدادات SEO & Social Meta"
@@ -88,6 +89,14 @@ collections:
                 fields:
                   - {label: "العنوان الرئيسي (AR)", name: "title_ar", widget: "string", default: "باقاتنا الإبداعية", required: true}
                   - {label: "العنوان الرئيسي (EN)", name: "title_en", widget: "string", default: "Our Creative Packages", required: true}
+                  - {label: "الوصف (AR)", name: "desc_ar", widget: "text", required: true}
+                  - {label: "الوصف (EN)", name: "desc_en", widget: "text", required: true}
+              - label: "صفحة الفريق"
+                name: "team"
+                widget: "object"
+                fields:
+                  - {label: "العنوان الرئيسي (AR)", name: "title_ar", widget: "string", default: "فريق العمل الإبداعي", required: true}
+                  - {label: "العنوان الرئيسي (EN)", name: "title_en", widget: "string", default: "Our Creative Team", required: true}
                   - {label: "الوصف (AR)", name: "desc_ar", widget: "text", required: true}
                   - {label: "الوصف (EN)", name: "desc_en", widget: "text", required: true}
 
@@ -204,6 +213,7 @@ collections:
       - {label: "التصنيف", name: "category", widget: "select", options: [{label: "مواقع ويب", value: "websites"}, {label: "تصميمات", value: "designs"}, {label: "فيديوهات", value: "videos"}], required: true}
       - {label: "الصورة الرئيسية", name: "image", widget: "image", required: true}
       - {label: "رابط فيديو (YouTube/Vimeo)", name: "video_link", widget: "string", required: false}
+      - {label: "صورة مصغرة للفيديو (Thumbnail)", name: "thumbnail", widget: "image", required: false}
       - {label: "الوصف القصير (AR)", name: "description_ar", widget: "string", required: true}
       - {label: "الوصف القصير (EN)", name: "description_en", widget: "string", required: true}
       - {label: "محتوى العمل بالتفصيل (AR)", name: "body_ar", widget: "markdown", required: true}
@@ -236,5 +246,20 @@ collections:
       - {label: "اسم الباقة (EN)", name: "title_en", widget: "string", required: true}
       - {label: "السعر", name: "price", widget: "string", required: true}
       - {label: "المميزات (AR)", name: "features_ar", widget: "list", required: true}
-      - {label: "المميزات (EN)", name: "features_en", widget: "list", required: true}
+      - {label: "الأجنحة (EN)", name: "features_en", widget: "list", required: true}
       - {label: "الأكثر طلباً؟", name: "popular", widget: "boolean", default: false}
+
+  - name: "team"
+    label: "👥 فريق العمل"
+    folder: "src/lib/data/team"
+    create: true
+    format: "json"
+    extension: "json"
+    slug: "{{slug}}"
+    fields:
+      - {label: "الاسم (AR)", name: "name_ar", widget: "string", required: true}
+      - {label: "الاسم (EN)", name: "name_en", widget: "string", required: true}
+      - {label: "الصورة", name: "image", widget: "image", required: true}
+      - {label: "الوصف القصير (AR)", name: "description_ar", widget: "string", required: true}
+      - {label: "الوصف القصير (EN)", name: "description_en", widget: "string", required: true}
+      - {label: "الترتيب", name: "order", widget: "number", default: 0, required: false}
