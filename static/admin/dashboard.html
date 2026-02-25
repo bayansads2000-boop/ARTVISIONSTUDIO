@@ -10,6 +10,62 @@
 
 <body>
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" type="module"></script>
+    <style>
+        /* Keep sidebar always visible on large screens */
+        @media (min-width: 1024px) {
+
+            [class*="sidebar"],
+            [class*="nav-panel"],
+            nav[role="navigation"] {
+                display: flex !important;
+                visibility: visible !important;
+                transform: none !important;
+                opacity: 1 !important;
+                position: relative !important;
+            }
+        }
+    </style>
+
+    <!-- Quick navigation floating bar -->
+    <div id="quick-nav" style="
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 99999;
+        background: rgba(20,20,20,0.95);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255,255,255,0.1);
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        padding: 8px 16px;
+        font-family: system-ui, sans-serif;
+    ">
+        <a href="#/collections/settings"
+            style="color:#fff;text-decoration:none;padding:6px 14px;border-radius:8px;font-size:13px;background:rgba(255,255,255,0.08);transition:0.2s;">⚙️
+            الإعدادات</a>
+        <a href="#/collections/portfolio"
+            style="color:#fff;text-decoration:none;padding:6px 14px;border-radius:8px;font-size:13px;background:rgba(255,255,255,0.08);transition:0.2s;">🎥
+            الأعمال</a>
+        <a href="#/collections/services"
+            style="color:#fff;text-decoration:none;padding:6px 14px;border-radius:8px;font-size:13px;background:rgba(255,255,255,0.08);transition:0.2s;">✨
+            الخدمات</a>
+        <a href="#/collections/packages"
+            style="color:#fff;text-decoration:none;padding:6px 14px;border-radius:8px;font-size:13px;background:rgba(255,255,255,0.08);transition:0.2s;">💎
+            الباقات</a>
+        <a href="#/collections/team"
+            style="color:#fff;text-decoration:none;padding:6px 14px;border-radius:8px;font-size:13px;background:rgba(255,255,255,0.08);transition:0.2s;">👥
+            الفريق</a>
+    </div>
+
+    <script>
+        // Add hover effect to quick nav buttons
+        document.querySelectorAll('#quick-nav a').forEach(a => {
+            a.addEventListener('mouseenter', () => a.style.background = 'rgba(227,30,36,0.3)');
+            a.addEventListener('mouseleave', () => a.style.background = 'rgba(255,255,255,0.08)');
+        });
+    </script>
 </body>
 
 </html>
