@@ -27,7 +27,6 @@
     const getItemsByCategory = (cat: string) => {
         return portfolio.filter((item) => item.category === cat).slice(0, 10);
     };
-<<<<<<< HEAD
     const swiperBreakpoints = {
         0: {
             slidesPerView: 2,
@@ -38,8 +37,6 @@
             spaceBetween: 30,
         },
     };
-=======
->>>>>>> e2dfc65c14e105a8a94b5e66d80da89ef0ea5286
 </script>
 
 <section id="portfolio" class="portfolio-home">
@@ -49,7 +46,6 @@
         </h2>
     </div>
 
-<<<<<<< HEAD
     <div class="categories-wrapper">
         {#each categories as cat, i}
             {#if getItemsByCategory(cat).length > 0}
@@ -81,36 +77,10 @@
                         >
                             {#each getItemsByCategory(cat) as item (item.slug)}
                                 <swiper-slide class="home-portfolio-slide">
-=======
-    <div class="categories-containers">
-        {#each categories as cat}
-            {#if getItemsByCategory(cat).length > 0}
-                <div class="category-group">
-                    <div class="container">
-                        <h3 class="category-label">
-                            {t(settings, `common.${cat}`, $lang)}
-                        </h3>
-                    </div>
-
-                    <div class="swiper-full-wrapper">
-                        <swiper-container
-                            init="true"
-                            loop="true"
-                            autoplay-delay="3500"
-                            autoplay-disable-on-interaction="false"
-                            speed="1500"
-                            slides-per-view="auto"
-                            space-between="25"
-                            class="home-portfolio-swiper"
-                        >
-                            {#each getItemsByCategory(cat) as item (item.slug)}
-                                <swiper-slide class="portfolio-slide">
->>>>>>> e2dfc65c14e105a8a94b5e66d80da89ef0ea5286
                                     <PortfolioCard {item} />
                                 </swiper-slide>
                             {/each}
                         </swiper-container>
-<<<<<<< HEAD
 
                         <!-- Premium Progress Indicator -->
                         <div class="swiper-progress-wrap">
@@ -126,14 +96,6 @@
         {/each}
     </div>
 
-=======
-                    </div>
-                </div>
-            {/if}
-        {/each}
-    </div>
-
->>>>>>> e2dfc65c14e105a8a94b5e66d80da89ef0ea5286
     <div class="container">
         <div class="view-all-container">
             <a href="/portfolio" class="btn-primary view-all-btn">
@@ -144,17 +106,11 @@
 </section>
 
 <style>
-<<<<<<< HEAD
     .portfolio-home {
         padding: 120px 0;
         overflow-x: hidden;
         background: #050505;
         position: relative;
-=======
-    .portfolio-section {
-        padding: 100px 0;
-        overflow-x: hidden;
->>>>>>> e2dfc65c14e105a8a94b5e66d80da89ef0ea5286
     }
 
     .section-title {
@@ -164,7 +120,6 @@
         text-align: center;
     }
 
-<<<<<<< HEAD
     .category-block {
         margin-bottom: 120px;
         position: relative;
@@ -251,58 +206,11 @@
 
     swiper-container::part(pagination-progressbar-fill) {
         background: var(--primary);
-=======
-    .category-group {
-        margin-bottom: 60px;
-    }
-
-    .category-label {
-        font-size: 1.5rem;
-        font-weight: 800;
-        margin-bottom: 25px;
-        color: var(--primary);
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .category-label::after {
-        content: "";
-        flex: 1;
-        height: 1px;
-        background: linear-gradient(to right, var(--primary), transparent);
-    }
-
-    :global([dir="rtl"]) .category-label::after {
-        background: linear-gradient(to left, var(--primary), transparent);
-    }
-
-    .swiper-full-wrapper {
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-    }
-
-    .portfolio-slide {
-        width: 380px;
-        height: auto;
-    }
-
-    swiper-container::part(container) {
-        padding: 20px 5vw;
->>>>>>> e2dfc65c14e105a8a94b5e66d80da89ef0ea5286
     }
 
     .view-all-container {
         text-align: center;
-<<<<<<< HEAD
         margin-top: 20px;
-=======
-        margin-top: 40px;
->>>>>>> e2dfc65c14e105a8a94b5e66d80da89ef0ea5286
     }
 
     @media (max-width: 768px) {
@@ -315,21 +223,12 @@
             margin-bottom: 40px;
         }
 
-<<<<<<< HEAD
         swiper-container::part(container) {
             padding: 20px 2.5vw;
         }
 
         .premium-swiper-wrapper {
             padding-bottom: 50px;
-=======
-        .portfolio-slide {
-            width: 280px;
-        }
-
-        .category-label {
-            font-size: 1.2rem;
->>>>>>> e2dfc65c14e105a8a94b5e66d80da89ef0ea5286
         }
     }
 </style>

@@ -18,7 +18,6 @@
     onMount(() => {
         register();
     });
-<<<<<<< HEAD
     const swiperBreakpoints = {
         0: {
             slidesPerView: 2,
@@ -46,26 +45,10 @@
                 {t(settings, "pages.team.title", $lang)}
             </h2>
             <div class="header-line"></div>
-=======
-</script>
-
-<section id="team" class="team-section">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">
-                {$lang === "ar" ? "فريق الإبداع" : "Creative Team"}
-            </h2>
-            <p class="section-desc">
-                {$lang === "ar"
-                    ? "نخبة من المبدعين يعملون بشغف لتحويل رؤيتك إلى واقع ملموس."
-                    : "A group of creative minds working with passion to turn your vision into reality."}
-            </p>
->>>>>>> e2dfc65c14e105a8a94b5e66d80da89ef0ea5286
         </div>
     </div>
 
     <div class="swiper-full-wrapper">
-<<<<<<< HEAD
         {#key $lang}
             <swiper-container
                 init="true"
@@ -133,53 +116,11 @@
                 {/each}
             </swiper-container>
         {/key}
-=======
-        <swiper-container
-            init="true"
-            loop="true"
-            autoplay-delay="4000"
-            autoplay-disable-on-interaction="false"
-            speed="1500"
-            slides-per-view="auto"
-            space-between="30"
-            mousewheel="true"
-            class="team-swiper"
-        >
-            {#each team as member (member.slug)}
-                <swiper-slide class="team-slide">
-                    <div class="team-card glass">
-                        <div class="member-image-wrapper">
-                            <img
-                                src={member.image}
-                                alt={$lang === "ar"
-                                    ? member.name_ar
-                                    : member.name_en}
-                                class="member-img"
-                            />
-                        </div>
-                        <div class="member-info">
-                            <h3 class="member-name">
-                                {$lang === "ar"
-                                    ? member.name_ar
-                                    : member.name_en}
-                            </h3>
-                            <p class="member-desc">
-                                {$lang === "ar"
-                                    ? member.description_ar
-                                    : member.description_en}
-                            </p>
-                        </div>
-                    </div>
-                </swiper-slide>
-            {/each}
-        </swiper-container>
->>>>>>> e2dfc65c14e105a8a94b5e66d80da89ef0ea5286
     </div>
 </section>
 
 <style>
     .team-section {
-<<<<<<< HEAD
         padding: 120px 0;
         overflow-x: hidden;
         position: relative;
@@ -215,20 +156,10 @@
         width: 350px;
         height: 350px;
         background: rgba(var(--primary-rgb), 0.5);
-=======
-        padding: 100px 0;
-        overflow-x: hidden;
-        background: radial-gradient(
-            circle at 50% -20%,
-            rgba(227, 30, 36, 0.05),
-            transparent 70%
-        );
->>>>>>> e2dfc65c14e105a8a94b5e66d80da89ef0ea5286
     }
 
     .section-header {
         text-align: center;
-<<<<<<< HEAD
         margin-bottom: 80px;
     }
 
@@ -302,61 +233,6 @@
         border-radius: 50%;
         padding: 6px;
         background: linear-gradient(45deg, var(--primary), transparent);
-=======
-        margin-bottom: 60px;
-    }
-
-    .section-title {
-        font-size: 3rem;
-        font-weight: 900;
-        margin-bottom: 15px;
-    }
-
-    .section-desc {
-        color: var(--text-muted);
-        max-width: 600px;
-        margin: 0 auto;
-    }
-
-    .swiper-full-wrapper {
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-        padding: 40px 0;
-    }
-
-    .team-slide {
-        width: 320px;
-        height: auto;
-    }
-
-    .team-card {
-        padding: 20px;
-        border-radius: 24px;
-        text-align: center;
-        transition:
-            transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-            border-color 0.5s ease;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .member-image-wrapper {
-        width: 150px;
-        height: 150px;
-        margin: 0 auto 25px;
-        border-radius: 50%;
-        overflow: hidden;
-        border: 4px solid var(--primary);
-        padding: 5px;
-        background: rgba(227, 30, 36, 0.1);
-        box-shadow: 0 10px 30px rgba(227, 30, 36, 0.2);
->>>>>>> e2dfc65c14e105a8a94b5e66d80da89ef0ea5286
     }
 
     .member-img {
@@ -364,7 +240,6 @@
         height: 100%;
         object-fit: cover;
         border-radius: 50%;
-<<<<<<< HEAD
         border: 4px solid var(--bg-dark);
         transition: filter 0.4s ease;
     }
@@ -419,21 +294,6 @@
         color: var(--text-muted);
         line-height: 1.7;
         opacity: 0.8;
-=======
-    }
-
-    .member-name {
-        font-size: 1.5rem;
-        font-weight: 800;
-        margin-bottom: 12px;
-        color: white;
-    }
-
-    .member-desc {
-        font-size: 0.95rem;
-        color: var(--text-muted);
-        line-height: 1.6;
->>>>>>> e2dfc65c14e105a8a94b5e66d80da89ef0ea5286
         display: -webkit-box;
         -webkit-line-clamp: 3;
         line-clamp: 3;
@@ -441,7 +301,6 @@
         overflow: hidden;
     }
 
-<<<<<<< HEAD
     .card-footer-decor {
         margin-top: 30px;
         padding-top: 20px;
@@ -520,36 +379,15 @@
 
     swiper-container::part(pagination-progressbar-fill) {
         background: var(--primary);
-=======
-    .team-card:hover {
-        transform: translateY(-15px);
-        border-color: var(--primary);
-    }
-
-    swiper-container::part(container) {
-        padding: 20px 5vw;
->>>>>>> e2dfc65c14e105a8a94b5e66d80da89ef0ea5286
     }
 
     @media (max-width: 768px) {
         .team-section {
-<<<<<<< HEAD
             padding: 80px 0;
         }
 
         swiper-container::part(container) {
             padding: 30px 2.5vw;
-=======
-            padding: 60px 0;
-        }
-
-        .section-title {
-            font-size: 2.2rem;
-        }
-
-        .team-slide {
-            width: 280px;
->>>>>>> e2dfc65c14e105a8a94b5e66d80da89ef0ea5286
         }
     }
 </style>

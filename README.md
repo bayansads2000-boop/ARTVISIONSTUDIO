@@ -1,42 +1,78 @@
-# sv
+# ART VISION STUDIO
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A modern, fully static marketing website for **Art Vision Studio** — built with SvelteKit 5, TypeScript, and Vite.
 
-## Creating a project
+## 🛠 Tech Stack
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **Framework:** [SvelteKit 5](https://svelte.dev/) with TypeScript
+- **Build:** [Vite 7](https://vitejs.dev/)
+- **Rendering:** Static Site Generation (SSG) via `@sveltejs/adapter-static`
+- **Hosting:** [Cloudflare Pages](https://pages.cloudflare.com/)
+- **3D Graphics:** Three.js
+- **UI Components:** Swiper, Markdown rendering via `marked`
 
-```sh
-# create a new project
-npx sv create my-app
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm
+
+### Install Dependencies
+
+```bash
+npm install
 ```
 
-To recreate this project with the same configuration:
+### Run Development Server
 
-```sh
-# recreate this project
-npx sv create --template minimal --types ts --install npm .
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
+```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+### Build for Production
 
-To create a production version of your app:
-
-```sh
+```bash
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
+### Preview Production Build
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+```bash
+npm run preview
+```
+
+## ☁️ Deployment (Cloudflare Pages)
+
+1. Push this repo to GitHub.
+2. Go to [Cloudflare Pages Dashboard](https://dash.cloudflare.com/).
+3. Create a new project → Connect your GitHub repo.
+4. Use these build settings:
+   - **Framework preset:** SvelteKit
+   - **Build command:** `npm run build`
+   - **Build output directory:** `build`
+5. Deploy!
+
+## 📁 Project Structure
+
+```
+├── src/
+│   ├── lib/
+│   │   ├── assets/        # Static assets (images, etc.)
+│   │   ├── components/    # Reusable Svelte components
+│   │   ├── data/          # JSON data (services, packages, settings)
+│   │   ├── stores/        # Svelte stores
+│   │   └── utils/         # Utility functions
+│   ├── routes/            # SvelteKit file-based routing
+│   ├── app.css            # Global styles
+│   ├── app.html           # HTML template
+│   └── app.d.ts           # TypeScript declarations
+├── static/                # Public static assets
+├── svelte.config.js       # SvelteKit configuration
+├── vite.config.ts         # Vite configuration
+└── package.json
+```
+
+## 📄 License
+
+All rights reserved © Art Vision Studio.

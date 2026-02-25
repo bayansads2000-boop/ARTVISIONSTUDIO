@@ -16,7 +16,6 @@
     const displayImage = $derived(
         item.video_link && item.thumbnail ? item.thumbnail : item.image,
     );
-<<<<<<< HEAD
 
     const categoryMap: Record<string, string> = {
         websites: "Web Development",
@@ -85,53 +84,6 @@
         </div>
     </div>
     <div class="card-bg-glow"></div>
-=======
-</script>
-
-<a href="/portfolio/{item.slug}" class="glass portfolio-card animate-on-scroll">
-    <div class="card-image-wrapper">
-        <img
-            src={displayImage}
-            alt={$lang === "ar" ? item.title_ar : item.title_en}
-            class="portfolio-img"
-        />
-        {#if item.video_link}
-            <div class="video-play-indicator">
-                <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path d="M8 5V19L19 12L8 5Z" fill="currentColor" />
-                </svg>
-            </div>
-        {/if}
-        <div class="portfolio-overlay">
-            <span class="view-btn">
-                {$lang === "ar" ? "عرض التفاصيل" : "View Details"}
-            </span>
-        </div>
-    </div>
-    <div
-        class="card-content"
-        style="text-align: {$lang === 'ar' ? 'right' : 'left'};"
-    >
-        <div class="card-meta">
-            <span class="card-category"
-                >{$lang === "ar"
-                    ? item.category === "websites"
-                        ? "موقع ويب"
-                        : item.category === "designs"
-                          ? "تصميم إبداعي"
-                          : "فيديو إحترافي"
-                    : item.category}</span
-            >
-        </div>
-        <h3 class="card-title">
-            {$lang === "ar" ? item.title_ar : item.title_en}
-        </h3>
-    </div>
->>>>>>> e2dfc65c14e105a8a94b5e66d80da89ef0ea5286
 </a>
 
 <style>
@@ -140,7 +92,6 @@
         display: block;
         text-decoration: none;
         color: inherit;
-<<<<<<< HEAD
         border-radius: 28px;
         transition: transform 0.6s var(--ease-out-expo);
         z-index: 1;
@@ -157,15 +108,10 @@
         border: 1px solid rgba(255, 255, 255, 0.05);
         transition: all 0.5s var(--ease-out-expo);
         z-index: 2;
-=======
-        display: block;
-        border-radius: 20px;
->>>>>>> e2dfc65c14e105a8a94b5e66d80da89ef0ea5286
     }
 
     .card-image-wrapper {
         aspect-ratio: 16/10;
-<<<<<<< HEAD
         overflow: hidden;
         position: relative;
         mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
@@ -174,49 +120,13 @@
             black 85%,
             transparent 100%
         );
-=======
-        background: #222;
-        overflow: hidden;
-        position: relative;
->>>>>>> e2dfc65c14e105a8a94b5e66d80da89ef0ea5286
     }
 
     .portfolio-img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-<<<<<<< HEAD
         transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-=======
-        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .video-play-indicator {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        width: 40px;
-        height: 40px;
-        background: rgba(227, 30, 36, 0.9);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        z-index: 2;
-        box-shadow: 0 4px 15px rgba(227, 30, 36, 0.4);
-    }
-
-    :global([dir="rtl"]) .video-play-indicator {
-        right: auto;
-        left: 20px;
-    }
-
-    .video-play-indicator svg {
-        width: 20px;
-        height: 20px;
-        margin-left: 2px;
->>>>>>> e2dfc65c14e105a8a94b5e66d80da89ef0ea5286
     }
 
     .video-indicator {
@@ -274,7 +184,6 @@
     .hover-overlay {
         position: absolute;
         inset: 0;
-<<<<<<< HEAD
         background: rgba(var(--primary-rgb), 0.15);
         display: flex;
         align-items: center;
@@ -332,58 +241,6 @@
     .portfolio-card-premium:hover .card-inner {
         border-color: rgba(227, 30, 36, 0.4);
         box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-=======
-        background: rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(5px);
-        opacity: 0;
-        transition: var(--transition);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 3;
-    }
-
-    .view-btn {
-        font-weight: 700;
-        color: white;
-        border: 2px solid var(--primary);
-        padding: 12px 25px;
-        border-radius: 50px;
-        background: var(--primary);
-        transform: translateY(20px);
-        transition:
-            transform 0.4s ease,
-            opacity 0.4s ease;
-    }
-
-    .card-content {
-        padding: 20px;
-    }
-
-    .card-meta {
-        margin-bottom: 8px;
-    }
-
-    .card-category {
-        color: var(--primary);
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        font-weight: 800;
-        letter-spacing: 0.05em;
-    }
-
-    .card-title {
-        margin: 0;
-        font-size: 1.1rem;
-        font-weight: 700;
-        line-height: 1.4;
-    }
-
-    .portfolio-card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(227, 30, 36, 0.5);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
->>>>>>> e2dfc65c14e105a8a94b5e66d80da89ef0ea5286
     }
 
     .portfolio-card-premium:hover .portfolio-img {
@@ -394,7 +251,6 @@
         opacity: 1;
     }
 
-<<<<<<< HEAD
     .portfolio-card-premium:hover .icon-circle {
         transform: scale(1) rotate(0);
     }
@@ -434,19 +290,6 @@
         .icon-circle {
             width: 40px;
             height: 40px;
-=======
-    .portfolio-card:hover .view-btn {
-        transform: translateY(0);
-    }
-
-    @media (max-width: 768px) {
-        .card-image-wrapper {
-            aspect-ratio: 16/9;
-        }
-
-        .card-title {
-            font-size: 1rem;
->>>>>>> e2dfc65c14e105a8a94b5e66d80da89ef0ea5286
         }
     }
 </style>
