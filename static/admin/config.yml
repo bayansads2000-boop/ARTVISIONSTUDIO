@@ -121,6 +121,14 @@ collections:
               - {label: "الايميل", name: "email", widget: "string", required: true}
               - {label: "الهاتف", name: "phone", widget: "string", required: true}
               - {label: "العنوان", name: "address", widget: "string", required: true}
+
+          - label: "روابط السوشيال ميديا"
+            name: "social"
+            widget: "object"
+            fields:
+              - {label: "فيسبوك", name: "facebook", widget: "string", default: "https://facebook.com/artvision", required: false}
+              - {label: "انستجرام", name: "instagram", widget: "string", default: "https://instagram.com/artvision", required: false}
+              - {label: "يوتيوب", name: "youtube", widget: "string", default: "https://youtube.com/artvision", required: false}
             
           - label: "تصميم الموقع (Colors)"
             name: "theme"
@@ -131,6 +139,7 @@ collections:
               - {label: "لون النقاط المتحركة", name: "particle_color", widget: "color", default: "#E6EAF0", required: true}
               - {label: "لون تموج السائل", name: "liquid_accent_color", widget: "color", default: "#3279F9", required: true}
               - {label: "لون الخلفية", name: "bg_color", widget: "color", default: "#0a0a0a", required: true}
+
 
       - name: "labels"
         label: "🛠️ نصوص الواجهة والأزرار (متقدم)"
