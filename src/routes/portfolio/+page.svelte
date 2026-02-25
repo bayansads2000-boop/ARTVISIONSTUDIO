@@ -23,7 +23,12 @@
         register();
     });
 
-    const categories = ["websites", "designs", "videos"];
+    const defaultOrder = ["websites", "designs", "videos"];
+    const categories = $derived(
+        settings?.portfolio_category_order?.length
+            ? settings.portfolio_category_order.map((o: any) => o.category)
+            : defaultOrder,
+    );
 
     const getItemsByCategory = (cat: string) => {
         return data.portfolio.filter((item) => item.category === cat);

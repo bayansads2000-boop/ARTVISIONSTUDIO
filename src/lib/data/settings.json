@@ -54,6 +54,17 @@
       "desc_en": "A team of creatives working with passion to turn your vision into reality."
     }
   },
+  "portfolio_category_order": [
+    {
+      "category": "designs"
+    },
+    {
+      "category": "videos"
+    },
+    {
+      "category": "websites"
+    }
+  ],
   "contact_cta": {
     "title_ar": "جاهز لنبدأ الإبداع؟",
     "title_en": "Ready to Start?",

@@ -106,6 +106,13 @@ collections:
                   - {label: "الوصف (AR)", name: "desc_ar", widget: "text", required: true}
                   - {label: "الوصف (EN)", name: "desc_en", widget: "text", required: true}
 
+          - label: "ترتيب تصنيفات معرض الأعمال"
+            name: "portfolio_category_order"
+            widget: "list"
+            hint: "اسحب وأفلت لتغيير ترتيب ظهور التصنيفات في الموقع"
+            fields:
+              - {label: "التصنيف", name: "category", widget: "select", options: [{label: "🎨 تصميمات", value: "designs"}, {label: "🎬 فيديوهات", value: "videos"}, {label: "🌐 مواقع ويب", value: "websites"}]}
+
           - label: "نصوص قسم تواصل معنا (CTA)"
             name: "contact_cta"
             widget: "object"
