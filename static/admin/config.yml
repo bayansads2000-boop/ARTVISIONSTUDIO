@@ -8,6 +8,14 @@ backend:
 media_folder: "static/uploads"
 public_folder: "/uploads"
 
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: dbuuw3f0p
+    api_key: 135144943428176
+    multiple: true
+
+
 collections:
   - name: "settings"
     label: "⚙️ الإعدادات والمحتوى"
@@ -219,7 +227,8 @@ collections:
       - {label: "اسم العمل (EN)", name: "title_en", widget: "string", required: true}
       - {label: "التصنيف", name: "category", widget: "select", options: [{label: "مواقع ويب", value: "websites"}, {label: "تصميمات", value: "designs"}, {label: "فيديوهات", value: "videos"}], required: true}
       - {label: "الصورة الرئيسية", name: "image", widget: "image", required: true}
-      - {label: "رابط فيديو (YouTube/Vimeo)", name: "video_link", widget: "string", required: false}
+      - {label: "رابط فيديو (YouTube/Vimeo)", name: "video_link", widget: "string", required: false, hint: "ضع رابط YouTube أو Vimeo هنا"}
+      - {label: "فيديو من الجهاز (Cloudinary)", name: "video_file", widget: "file", required: false, hint: "أو ارفع فيديو مباشرة من جهازك", media_library: {config: {resource_type: video}}}
       - {label: "صورة مصغرة للفيديو (Thumbnail)", name: "thumbnail", widget: "image", required: false}
       - {label: "الوصف القصير (AR)", name: "description_ar", widget: "string", required: true}
       - {label: "الوصف القصير (EN)", name: "description_en", widget: "string", required: true}

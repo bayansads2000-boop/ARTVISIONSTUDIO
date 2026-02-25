@@ -65,6 +65,16 @@
                             : project.title_en}
                     ></iframe>
                 </div>
+            {:else if project.video_file}
+                <video
+                    controls
+                    playsinline
+                    poster={project.thumbnail || project.image}
+                    style="width: 100%; display: block;"
+                >
+                    <source src={project.video_file} type="video/mp4" />
+                    <track kind="captions" />
+                </video>
             {:else}
                 <img
                     src={project.image}

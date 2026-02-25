@@ -8,13 +8,15 @@
         image: string;
         thumbnail?: string;
         video_link?: string;
+        video_file?: string;
         slug: string;
     }
 
     let { item }: { item: PortfolioItem } = $props();
 
+    const hasVideo = $derived(!!item.video_link || !!item.video_file);
     const displayImage = $derived(
-        item.video_link && item.thumbnail ? item.thumbnail : item.image,
+        hasVideo && item.thumbnail ? item.thumbnail : item.image,
     );
 
     const categoryMap: Record<string, string> = {
@@ -42,7 +44,7 @@
                 class="portfolio-img"
             />
 
-            {#if item.video_link}
+            {#if hasVideo}
                 <div class="video-indicator">
                     <span class="pulse"></span>
                     <span class="indicator-text"
